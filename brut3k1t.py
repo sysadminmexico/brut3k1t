@@ -4,23 +4,18 @@ from time import sleep
 from sys import exit, path
 from subprocess import call
 
+
+####################
+# Requirements and libraries. All stored in horrible seperate modules
+####################
+
+
 path.append('src/')
-from sshLib import *
-from ftpLib import *
-from smtpLib import *
+from mainLib import *
 from twitterLib import *
 from instagramLib import *
-from xmppLib import *
-from facebookLib import *
+from header import *
 
-W = '\033[0m'  # white (normal)
-R = '\033[31m'  # red
-G = '\033[32m'  # green
-O = '\033[33m'  # orange
-B = '\033[34m'  # blue
-P = '\033[35m'  # purple
-C = '\033[36m'  # cyan
-GR = '\033[37m'  # gray
 
 
 try:
@@ -30,10 +25,12 @@ try:
     import xmpp
     import fbchat
 except ImportError:
-    print R + "You are missing dependencies! They will be installed for you with pip." + W
-    print "Loading..."
-    sleep(3)
-    pip.main(["install", "argparse", "selenium", "paramiko", "xmpppy", "fbchat"])
+    print R + "You are missing dependencies! Run Installer? (y/n)" + W
+    install = raw_input()
+    if install == "y":
+        os.system("sudo python installer.py")
+    elif install == "n":
+        sys.exit(1)
 
 def get_args():
 
@@ -67,12 +64,15 @@ def get_args():
 
     return service, username, wordlist, address, port, delay
 
-
+####################
+# Main function. Append user args for visually appealing output
+####################
 
 def main():
 
     service, username, wordlist, address, port, delay = get_args()
 
+    print headers[randint(0,10)]
 
     print G + "[*] Username: %s " % username
     sleep(0.5)
@@ -91,7 +91,7 @@ def main():
             exit()
         print C + "[*] Address: %s" % address + W
         sleep(0.5)
-        ####
+        # If a port is not provided, set it to default 22
         if port is None:
             print O + "[?] Port not set. Automatically set to 22 for you [?]" + W
             port = 22
@@ -100,6 +100,7 @@ def main():
         sleep(1)
         print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
+        # Call the sshBruteforce() method
         sshBruteforce(address, username, wordlist, port, delay)
         call(["rm", "filename.log"])
 
@@ -118,6 +119,7 @@ def main():
         print "Using %s seconds of delay. Default is 1 second" % delay
         ftpBruteforce(address, username, wordlist, delay, port)
 
+    # SMTP bruteforce
     elif service == 'smtp':
         if address is None:
             print R + "[!] You need to provide an SMTP server address for cracking! [!]" + W
@@ -134,6 +136,7 @@ def main():
         print "Using %s seconds of delay. Default is 1 second" % delay
         smtpBruteforce(address, username, wordlist, delay, port)
 
+    # XMPP bruteforce
     elif service == 'xmpp':
         if address is None:
             print R + "[!] NOTE: You need to include a server address for cracking XMPP [!]" + W
@@ -149,6 +152,7 @@ def main():
         print "Using %s seconds of delay. Default is 1 second" % delay
         xmppBruteforce(address, port, username, wordlist, delay)
 
+    # Twitter Bruteforce
     elif service == 'twitter':
         if address or port:
             print R + "[!] NOTE: You don't need to provide an address OR port for Twitter (LOL) [!]" + W
@@ -161,6 +165,7 @@ def main():
         sleep(1)
         twitterBruteforce(username, wordlist, delay)
 
+    # Instagram Bruteforce
     elif service == 'instagram':
         if address or port:
             print R + "[!] NOTE: You don't need to provide an address OR port for Instagram (LOL) [!]" + W
@@ -175,6 +180,7 @@ def main():
         print "Using %s seconds of delay. Default is 1 second" % delay
         instagramBruteforce(username, wordlist, delay)
 
+    # Facebook Bruteforce
     elif service == 'facebook':
         print O + "[*] This Facebook bruteforce module is experimental. You will need to provide a Facebook ID instead of a username. Sorry! [*]" + W
         sleep(2)

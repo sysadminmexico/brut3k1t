@@ -1,6 +1,8 @@
 # brut3k1t
-## version 1 release
 Server-side brute-force module.
+
+# NOTE: brut3k1t is under heavy development! Expect updates to be pushed in
+the following weeks.
 
 ## 1. Introduction
 
@@ -37,6 +39,11 @@ Downloading is simple. Simply `git clone`.
 Change to directory:
 
     cd /path/to/brut3k1t
+
+Receiving errors about missing modules/libraries? Make sure that `python-pip` is installed, and try:
+
+    pip install -r requirements.txt
+
 
 ## 3. Usage
 
@@ -95,7 +102,7 @@ Cracking Instagram with username `test` with wordlist `wordlist.txt` and a 5 sec
      python brut3k1t.py -s instagram -u test -w wordlist.txt -d 5
 
 
- ## KEY NOTES TO REMEMBER
+## KEY NOTES TO REMEMBER
 
  * If you do not supply the port `-p` flag, the default port for that service will be used. You do not need to provide it for Facebook and Instagram, since they are um... web-based. :)
 
@@ -111,6 +118,6 @@ Cracking Instagram with username `test` with wordlist `wordlist.txt` and a 5 sec
 
  * Use this for educational and ethical hacking purposes, as well as the sake of learning code and security-oriented practices. __No script kiddies!__
 
-
+Thanks for trying out brut3k1t! I've been pretty lazy in terms of development and keeping this code updated and in track, so please __PLEASE__ report any sort of errors that arise (including false-positives).
 
 # Much more features to come!

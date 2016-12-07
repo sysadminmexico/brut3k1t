@@ -7,6 +7,9 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
+''' instagramLib.py - Instagram bruteforce, seperate from mainLib to prevent any errors.
+                      Comprises of a username checking method and actual bruteforce method. '''
+
 R = '\033[31m'  # red
 W = '\033[0m'  # white (normal)
 G = '\033[32m'  # green
@@ -43,3 +46,6 @@ def instagramBruteforce(username, wordlist, delay):
             sys.exit()
         except Exception, e :
             print R + "[!] OOPs, something went wrong. Did you terminate the connection? [!]" + W
+        except KeyboardInterrupt:
+            print O + "[!] Keyboard Interrupt Detected! Stopping... [!]" + W
+            exit()
