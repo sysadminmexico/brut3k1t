@@ -12,25 +12,10 @@ from subprocess import call
 
 path.append('src/')
 from mainLib import *
-from twitterLib import *
+#from twitterLib import *
 from instagramLib import *
 from header import *
 
-
-
-try:
-    import argparse
-    import selenium
-    import paramiko
-    import xmpp
-    import fbchat
-except ImportError:
-    print R + "You are missing dependencies! Run Installer? (y/n)" + W
-    install = raw_input()
-    if install == "y":
-        os.system("sudo python installer.py")
-    elif install == "n":
-        sys.exit(1)
 
 def get_args():
 
@@ -72,7 +57,7 @@ def main():
 
     service, username, wordlist, address, port, delay = get_args()
 
-    print headers[randint(0,10)]
+    print headers[randint(0,13)]
 
     print G + "[*] Username: %s " % username
     sleep(0.5)
@@ -176,7 +161,7 @@ def main():
             exit()
         print G + "[*] Username found! Continuing..." + W
         sleep(1)
-        print P + "[*] Starting dictionary attack! [*]" + W
+        print P + "[*] Starting dictionary attack! [*]" + W 
         print "Using %s seconds of delay. Default is 1 second" % delay
         instagramBruteforce(username, wordlist, delay)
 
@@ -185,11 +170,20 @@ def main():
         print O + "[*] This Facebook bruteforce module is experimental. You will need to provide a Facebook ID instead of a username. Sorry! [*]" + W
         sleep(2)
         if address or port:
-            print R + "[!] NOTE: You dont need to provide an address OR port for Facebook (LOL) [!]"
+            print R + "[!] NOTE: You don't need to provide an address OR port for Facebook (LOL) [!]" + w 
             exit()
         print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
         facebookBruteforce(username, wordlist, delay)
+    
+    # Skype Bruteforce
+    elif service == 'skype':
+        if address or port:
+            print R + "[!] NOTE: You don't need to provide an address OR port for Skype (LOL) [!]" + W 
+        print P + "[*] Starting dictionary attack! [*]" + W
+        print "Using %s seconds of delay. Default is 1 second" % delay
+        skypeBruteforce(username, wordlist, delay)
+            
 
 if __name__ == '__main__':
     main()

