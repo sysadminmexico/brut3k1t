@@ -36,9 +36,9 @@ def linux_build():
     sleep(1.5)
     os.system("sudo pip install -r requirements.txt")
     print G + "[!] Done installing dependences! [!]" + O
-    print"[*] Make symlinks and installation directories [*]"
-    os.system("mkdir /opt/brut3k1t && cp ~/Code/brut3k1t /opt/brut3k1t")
-    os.symlink("/usr/bin/brut3k1t", "/opt/brut3k1t/brut3k1t.py")
+    print "[*] Make symlinks and installation directories [*]" + W
+    os.system("mkdir /opt/brut3k1t")
+    os.system("cp -R src/ /opt/brut3k1t && cp brut3k1t.py  /opt/brut3k1t && cp run.sh /opt/dedsploit && cp run.sh /usr/bin/brut3k1t && chmod +x /usr/bin/brut3k1t")
   
     
 # OS X / Darwin
@@ -71,8 +71,7 @@ while True:
     elif getos == "2":
         osx_build()
 
-    print G + "brut3k1t installer! To start, press Enter. Will create a symlink for easier access" + W
-    raw_input()
+
 
 
     
