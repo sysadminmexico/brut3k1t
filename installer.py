@@ -23,13 +23,12 @@ installer_head = """
                  ||     ||
     """
 
-
 # Unix/Linux-based distros
 def linux_build():
 
     print O + "[*] Updating..." + W
     sleep(1.5)
-    os.system("sudo apt-sget update")
+    os.system("sudo apt-get update")
     print O + "[*] Installing essential packages... [*]" + W
     sleep(1.5)
     os.system("sudo apt-get install python python-pip python-setuptools python-selenium firefoxdriver")
@@ -40,7 +39,7 @@ def linux_build():
     print"[*] Make symlinks and installation directories [*]"
     os.system("mkdir /opt/brut3k1t && cp ~/Code/brut3k1t /opt/brut3k1t")
     os.symlink("/usr/bin/brut3k1t", "/opt/brut3k1t/brut3k1t.py")
-    
+  
     
 # OS X / Darwin
 def osx_build():
@@ -57,8 +56,7 @@ def osx_build():
     print"[*] Make symlinks and installation directories [*]"
     os.system("mkdir /opt/brut3k1t")
     os.symlink("/usr/bin/brut3k1t", "/opt/brut3k1t/brut3k1t.py")
-    
-    
+
 print installer_head
 
 while True:
@@ -67,12 +65,14 @@ while True:
     print "(1) Unix/Linux-based Distros"
     print "(2) Mac OS X / Darwin"
     print "=============================="
-    os = raw_input()
-    if os == "1":
+    getos = raw_input()
+    if getos == "1":
         linux_build()
-    elif os == "2":
+    elif getos == "2":
         osx_build()
 
     print G + "brut3k1t installer! To start, press Enter. Will create a symlink for easier access" + W
     raw_input()
 
+
+    
