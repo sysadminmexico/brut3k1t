@@ -1,8 +1,7 @@
 # brut3k1t
 Server-side brute-force module.
 
-# NOTE: brut3k1t is under heavy development! Expect updates to be pushed in
-the following weeks.
+# NOTE: brut3k1t is under heavy development! Expect updates to be pushed in the following weeks.
 
 ## 1. Introduction
 
@@ -16,7 +15,7 @@ The current protocols that are complete and in support are:
     instagram
     facebook
 
-There will be future implementations of different protocols and services (including Twitter, Facebook, Instagram).
+There will be future integration of Twitter, Skype, telnet, etc.
 
 ## 2. Installation
 
@@ -39,6 +38,10 @@ Downloading is simple. Simply `git clone`.
 Change to directory:
 
     cd /path/to/brut3k1t
+
+Run the Installer file (as root)
+
+    sudo python installer.py
 
 Receiving errors about missing modules/libraries? Make sure that `python-pip` is installed, and try:
 
@@ -77,7 +80,7 @@ Typing `python brut3k1t -h` shows the help menu:
     -w PASSWORD, --wordlist PASSWORD
                         Provide a wordlist or directory to a wordlist
 
-### Examples of usage:
+### 3. Examples of usage:
 
 Cracking SSH server running on `192.168.1.3` using `root` and `wordlist.txt` as a wordlist.
 
@@ -102,7 +105,7 @@ Cracking Instagram with username `test` with wordlist `wordlist.txt` and a 5 sec
      python brut3k1t.py -s instagram -u test -w wordlist.txt -d 5
 
 
-## KEY NOTES TO REMEMBER
+## 4. KEY NOTES TO REMEMBER
 
  * If you do not supply the port `-p` flag, the default port for that service will be used. You do not need to provide it for Facebook and Instagram, since they are um... web-based. :)
 
