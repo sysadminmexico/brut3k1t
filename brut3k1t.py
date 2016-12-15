@@ -59,14 +59,14 @@ def main():
 
     print headers[randint(0,13)]
 
-    print G + "[*] Username: %s " % username
+    print (G + "[*] Username: %s " % username) + W
     sleep(0.5)
-    print G + "[*] Wordlist: %s " % wordlist
+    print (G + "[*] Wordlist: %s " % wordlist) + W
     sleep(0.5)
     if os.path.exists(wordlist) == False:
         print R + "[!] Wordlist not found! [!]" + W
         exit()
-    print C + "[*] Service: %s "  % service + W
+    print (C + "[*] Service: %s "  % service) + W
     sleep(0.5)
 
     # SSH bruteforce
@@ -161,7 +161,7 @@ def main():
             exit()
         print G + "[*] Username found! Continuing..." + W
         sleep(1)
-        print P + "[*] Starting dictionary attack! [*]" + W 
+        print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
         instagramBruteforce(username, wordlist, delay)
 
@@ -170,20 +170,24 @@ def main():
         print O + "[*] This Facebook bruteforce module is experimental. You will need to provide a Facebook ID instead of a username. Sorry! [*]" + W
         sleep(2)
         if address or port:
-            print R + "[!] NOTE: You don't need to provide an address OR port for Facebook (LOL) [!]" + w 
+            print R + "[!] NOTE: You don't need to provide an address OR port for Facebook (LOL) [!]" + w
             exit()
         print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
         facebookBruteforce(username, wordlist, delay)
-    
+
     # Skype Bruteforce
     elif service == 'skype':
         if address or port:
-            print R + "[!] NOTE: You don't need to provide an address OR port for Skype (LOL) [!]" + W 
+            print R + "[!] NOTE: You don't need to provide an address OR port for Skype (LOL) [!]" + W
         print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
         skypeBruteforce(username, wordlist, delay)
-            
+
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print R + "[!] Keyboard Interrupt detected! Killing program... [!]" + W
+        sys.exit(1)
