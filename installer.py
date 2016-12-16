@@ -37,7 +37,8 @@ def linux_build():
     os.system("sudo apt-get update")
     print O + "Installing essential packages..." + W
     sleep(1.5)
-    os.system("sudo apt-get install python-pip python-setuptools python-selenium firefox-esr firefoxdriver")
+    os.system("sudo apt-get install build-essential libssl-dev libffi-dev python-dev")
+    os.system("sudo apt-get install python-pip python-setuptools python-selenium firefox firefoxdriver")
     print O + "Installing pip modules" + W
     sleep(1.5)
     os.system("sudo pip install -r requirements.txt")
@@ -45,6 +46,7 @@ def linux_build():
     print "Making symlinks and installation directories..." + W
     os.system("mkdir /opt/brut3k1t")
     os.system("cp -R src/ /opt/brut3k1t && cp brut3k1t.py  /opt/brut3k1t && cp run.sh /opt/dedsploit && cp run.sh /usr/bin/brut3k1t && chmod +x /usr/bin/brut3k1t")
+
 
 
 # OS X / Darwin
@@ -58,6 +60,8 @@ def osx_build():
     sleep(1.5)
     os.system("sudo easy_install selenium")
     os.system("sudo pip install -r requirements.txt")
+    # If Crytography returns error:
+    os.system("brew install libffi")
     print G + "[!] Done installing dependences! [!]" + O
     print"[*] Make symlinks and installation directories [*]"
     os.system("mkdir /opt/brut3k1t")
@@ -69,6 +73,7 @@ while True:
     print "Select an Operating System"
     print "=============================="
     print "(1) Unix/Linux-based Distros"
+    print "(2) Kali Linux / Parrot OS"
     print "(2) Mac OS X / Darwin"
     print "=============================="
     getos = raw_input()
