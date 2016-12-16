@@ -32,31 +32,31 @@ installer_head = """
 # Unix/Linux-based distros
 def linux_build():
 
-    print O + "[*] Updating..." + W
+    print O + "Updating Repositories..." + W
     sleep(1.5)
     os.system("sudo apt-get update")
-    print O + "[*] Installing essential packages... [*]" + W
+    print O + "Installing essential packages..." + W
     sleep(1.5)
     os.system("sudo apt-get install python-pip python-setuptools python-selenium firefox-esr firefoxdriver")
-    print O + "[*] Installing pip modules [*]" + W
+    print O + "Installing pip modules" + W
     sleep(1.5)
     os.system("sudo pip install -r requirements.txt")
-    print G + "[!] Done installing dependences! [!]" + O
-    print "[*] Make symlinks and installation directories [*]" + W
+    print G + "Done installing dependences!" + O
+    print "Making symlinks and installation directories..." + W
     os.system("mkdir /opt/brut3k1t")
     os.system("cp -R src/ /opt/brut3k1t && cp brut3k1t.py  /opt/brut3k1t && cp run.sh /opt/dedsploit && cp run.sh /usr/bin/brut3k1t && chmod +x /usr/bin/brut3k1t")
 
 
 # OS X / Darwin
 def osx_build():
-    print O + "[*] Installing Homebrew [*]" + W
+    print O + "Installing Homebrew..." + W
     sleep(1.5)
     os.system("""/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" """)
-    os.system("brew install python selenium-server-standalone")
-    os.system("sudo wget https://bootstrap.pypa.io/get-pip.py")
-    os.system ("sudo python get_pip.py")
-    print O + "[*] Installing pip modules [*]" + W
+    os.system("brew install Caskroom/cask/firefox")
+    os.system("sudo easy_install pip")
+    print O + "Installing pip modules" + W
     sleep(1.5)
+    os.system("sudo easy_install selenium")
     os.system("sudo pip install -r requirements.txt")
     print G + "[!] Done installing dependences! [!]" + O
     print"[*] Make symlinks and installation directories [*]"

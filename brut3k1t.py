@@ -189,5 +189,5 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        print R + "[!] Keyboard Interrupt detected! Killing program... [!]" + W
+        print R + "\n[!] Keyboard Interrupt detected! Killing program... [!]" + W
         sys.exit(1)
