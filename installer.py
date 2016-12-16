@@ -59,9 +59,9 @@ def osx_build():
     print O + "Installing pip modules" + W
     sleep(1.5)
     os.system("sudo easy_install selenium")
-    os.system("sudo pip install -r requirements.txt")
-    # If Crytography returns error:
+    # If Crytography returns errorS
     os.system("brew install libffi")
+    os.system("sudo pip install -r requirements.txt")
     print G + "[!] Done installing dependences! [!]" + O
     print"[*] Make symlinks and installation directories [*]"
     os.system("mkdir /opt/brut3k1t")
