@@ -30,7 +30,7 @@ installer_head = """
     """
 
 # Unix/Linux-based distros
-def linux_build():
+def kali_build():
 
     print O + "Updating Repositories..." + W
     sleep(1.5)
@@ -38,14 +38,14 @@ def linux_build():
     print O + "Installing essential packages..." + W
     sleep(1.5)
     os.system("sudo apt-get install build-essential libssl-dev libffi-dev python-dev")
-    os.system("sudo apt-get install python-pip python-setuptools python-selenium firefox firefoxdriver")
+    os.system("sudo apt-get install firefoxdriver")
     print O + "Installing pip modules" + W
     sleep(1.5)
     os.system("sudo pip install -r requirements.txt")
     print G + "Done installing dependences!" + O
     print "Making symlinks and installation directories..." + W
     os.system("mkdir /opt/brut3k1t")
-    os.system("cp -R src/ /opt/brut3k1t && cp brut3k1t.py  /opt/brut3k1t && cp run.sh /opt/dedsploit && cp run.sh /usr/bin/brut3k1t && chmod +x /usr/bin/brut3k1t")
+    os.system("cp -R src/ /opt/brut3k1t && cp brut3k1t.py  /opt/brut3k1t && cp run.sh /opt/brut3k1t && cp run.sh /usr/bin/brut3k1t && chmod +x /usr/bin/brut3k1t")
 
 
 
@@ -72,13 +72,13 @@ print installer_head
 while True:
     print "Select an Operating System"
     print "=============================="
-    print "(1) Unix/Linux-based Distros"
-    print "(2) Kali Linux / Parrot OS"
+    print "(1) Kali Linux / Parrot OS"
     print "(2) Mac OS X / Darwin"
+    print "(3) "
     print "=============================="
     getos = raw_input()
     if getos == "1":
-        linux_build()
+        kali_build()
         break
     elif getos == "2":
         osx_build()
