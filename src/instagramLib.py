@@ -46,6 +46,3 @@ def instagramBruteforce(username, wordlist, delay):
             sys.exit()
         except Exception, e :
             print R + "[!] OOPs, something went wrong. Did you terminate the connection? [!]" + W
-        except KeyboardInterrupt:
-            print O + "[!] Keyboard Interrupt Detected! Stopping... [!]" + W
-            exit()

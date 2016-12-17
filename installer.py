@@ -43,9 +43,9 @@ def kali_build():
     sleep(1.5)
     os.system("sudo pip install -r requirements.txt")
     print G + "Done installing dependences!" + O
-    print "Making symlinks and installation directories..." + W
-    os.system("mkdir /opt/brut3k1t")
-    os.system("cp -R src/ /opt/brut3k1t && cp brut3k1t.py  /opt/brut3k1t && cp run.sh /opt/brut3k1t && cp run.sh /usr/bin/brut3k1t && chmod +x /usr/bin/brut3k1t")
+    #print "Making symlinks and installation directories..." + W
+    #os.system("mkdir /opt/brut3k1t")
+    #os.system("cp -R src/ /opt/brut3k1t && cp brut3k1t.py  /opt/brut3k1t && cp run.sh /opt/brut3k1t && cp run.sh /usr/bin/brut3k1t && chmod +x /usr/bin/brut3k1t")
 
 
 
@@ -63,9 +63,7 @@ def osx_build():
     os.system("brew install libffi")
     os.system("sudo pip install -r requirements.txt")
     print G + "[!] Done installing dependences! [!]" + O
-    print"[*] Make symlinks and installation directories [*]"
-    os.system("mkdir /opt/brut3k1t")
-    os.symlink("/usr/bin/brut3k1t", "/opt/brut3k1t/brut3k1t.py")
+
 
 print installer_head
 
@@ -74,7 +72,6 @@ while True:
     print "=============================="
     print "(1) Kali Linux / Parrot OS"
     print "(2) Mac OS X / Darwin"
-    print "(3) "
     print "=============================="
     getos = raw_input()
     if getos == "1":
@@ -83,4 +80,5 @@ while True:
     elif getos == "2":
         osx_build()
         break
-    sys.exit(0)
+    else:
+        continue
