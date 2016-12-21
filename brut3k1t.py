@@ -25,7 +25,7 @@ def get_args():
     parser.add_argument('-a', '--address', dest='address', help='Provide host address for specified service. Required for certain protocols')
     parser.add_argument('-p', '--port', type=int, dest='port', help='Provide port for host address for specified service. If not specified, will be automatically set')
     parser.add_argument('-d', '--delay', type=int, dest='delay', help='Provide the number of seconds the program delays as each password is tried')
-    parser.add_argument('-p', '--proxy', type=str, dest='proxy', help='Use HTTP/HTTPs to hide IP address during Web Brute-force')
+    parser.add_argument('-c', '--proxy', type=str, dest='proxy', help='Use HTTP/HTTPs to hide IP address during Web Brute-force')
     
     args = parser.parse_args()
 
