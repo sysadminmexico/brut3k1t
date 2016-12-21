@@ -22,7 +22,6 @@ from subprocess import call
 # New stuff! Should be installed thru requirements.txt.
 
 import smtplib, argparse, paramiko, skpy, mechanize
-from fbchat import *
 from xmpp import *
 from ftplib import FTP
 
