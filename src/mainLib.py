@@ -13,10 +13,11 @@ mainLib.py - Core methods and global variables that occur after user parsing and
 
 # Comes with Python. These should be core libraries.
 
-import socket, os
+import socket, os, pip
 from time import sleep
-from sys import exit
+from sys import *
 from random import *
+from subprocess import call
 
 # New stuff! Should be installed thru requirements.txt.
 
@@ -25,8 +26,10 @@ from fbchat import *
 from xmpp import *
 from ftplib import FTP
 
+################################################################
+# Global variables and configurations!!
+################################################################
 
-# Global variables for color
 W = '\033[0m'  # white (normal)
 R = '\033[31m'  # red
 G = '\033[32m'  # green
@@ -35,6 +38,7 @@ B = '\033[34m'  # blue
 P = '\033[35m'  # purple
 C = '\033[36m'  # cyan
 GR = '\033[37m'  # gray
+
 
 
 

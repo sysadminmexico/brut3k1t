@@ -1,8 +1,5 @@
 #!/usr/bin/python
-import pip, os, socket
-from time import sleep
-from sys import exit, path
-from subprocess import call
+from sys import *
 
 
 ####################
@@ -14,6 +11,7 @@ path.append('src/')
 from mainLib import *
 from facebookLib import *
 from instagramLib import *
+from twitterLib import *
 from header import *
 
 

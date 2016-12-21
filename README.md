@@ -14,23 +14,24 @@ The current protocols that are complete and in support are:
     XMPP
     instagram
     facebook
+    twitter
     skype
 
-There will be future integration of Twitter, Skype, telnet, etc.
+
 
 ## 2. Installation
 
-Installation is simple. __brut3k1t__ requires several dependencies, although they will be installed by the
-program if you do not have it.
+Installation is simple. __brut3k1t__ requires several dependencies, which will all be installed by running the `installer.py` executable.
 
 * __argparse__ - utilized for parsing command line arguments
 * __paramiko__ - utilized for working with SSH connections and authentication
 * __ftplib__ - utilized for working with FTP connections and authentication
 * __smtplib__ - utilized for working with SMTP (email) connections and authentication
-* __fbchat__ - utilized for connecting with Facebook
+* ~~ __fbchat__ - utilized for connecting with Facebook ~~
 * __selenium__ - utilized for web scraping, which is used with Instagram (and later Twitter)
 * __xmppy__ - utiized for XMPP connections
-...and more within the future!
+* __SkPy__ - utilized for Skype connections
+
 
 Downloading is simple. Simply `git clone`.
 
@@ -44,12 +45,26 @@ Run the Installer file (as root)
 
     sudo python installer.py
 
-Receiving errors about missing modules/libraries? Make sure that `python-pip` is installed, and try:
+## 3. Troubleshooting (troubleshooting guide coming soon!)
 
-    pip install -r requirements.txt
+If you received any errors about dependencies, try to manually install the requirements. Here's how:
+
+1. Installing dependencies:
+
+    sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+
+Make sure `firefox` is installed (default for most OS). If your operating system permits, install `firefoxdriver` as well.
+
+2. Installing `pip` modules
+
+    sudo pip install -r requirements.txt
+
+while you are in the `brut3k1t/` directory.
+
+If you are having any trouble installing `pip` dependencies, you can try using `easy_install` as an alternative
 
 
-## 3. Usage
+## 4. Usage
 
 Utilizing __brut3k1t__ is a little more complicated than just running a Python file.
 
@@ -81,7 +96,7 @@ Typing `python brut3k1t -h` shows the help menu:
     -w PASSWORD, --wordlist PASSWORD
                         Provide a wordlist or directory to a wordlist
 
-### 3. Examples of usage:
+### 5. Examples of usage:
 
 Cracking SSH server running on `192.168.1.3` using `root` and `wordlist.txt` as a wordlist.
 
@@ -97,24 +112,26 @@ Cracking XMPP `test@creep.im` with `wordlist.txt` on default port `5222`. XMPP a
 
     python brut3k1t.py -s xmpp -a creep.im -u test -w wordlist.txt
 
-Cracking Facebook is quite a challenge, since you will require the target user ID, not the username.
+Cracking Facebook requires either the username (preferable, in this case, `test`), email, phone number, or even ID.
 
-    python brut3k1t.py -s facebook -u 1234567890 -w wordlist.txt
+    python brut3k1t.py -s facebook -u test -w wordlist.txt
 
 Cracking Instagram with username `test` with wordlist `wordlist.txt` and a 5 second delay
 
      python brut3k1t.py -s instagram -u test -w wordlist.txt -d 5
 
+ Cracking Twitter with username `test` with wordlist `wordlist.txt`
 
-## 4. KEY NOTES TO REMEMBER
+     python brut3k1t.py -s twitter -u test -w wordlist.txt
+
+
+## 6. KEY NOTES TO REMEMBER
 
  * If you do not supply the port `-p` flag, the default port for that service will be used. You do not need to provide it for Facebook and Instagram, since they are um... web-based. :)
 
  * If you do not supply the delay `-d` flag, the default delay in seconds will be 1.
 
  * Remember, use the SMTP server address and XMPP server address for the address `-a` flag, when cracking SMTP and XMPP, respectively.
-
- * Facebook requires the username ID. This is a little bit of a setback since some people do not display their ID publicly on their profile.
 
  * Make sure the wordlist and its directory is specified. If it is in `/usr/local/wordlists/wordlist.txt` specify that for the wordlist `-w` flag.
 
@@ -123,5 +140,14 @@ Cracking Instagram with username `test` with wordlist `wordlist.txt` and a 5 sec
  * Use this for educational and ethical hacking purposes, as well as the sake of learning code and security-oriented practices. __No script kiddies!__
 
 Thanks for trying out brut3k1t! I've been pretty lazy in terms of development and keeping this code updated and in track, so please __PLEASE__ report any sort of errors that arise (including false-positives).
+
+## 7. TODO
+
+* Proxy support
+* Randomized user agents
+* GUI or web-based GUI
+* Telnet and HTTP attack vectors
+* Using Skype login + selenium rather than `Skpy` module.
+
 
 # Much more features to come!
