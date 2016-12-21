@@ -25,7 +25,8 @@ def get_args():
     parser.add_argument('-a', '--address', dest='address', help='Provide host address for specified service. Required for certain protocols')
     parser.add_argument('-p', '--port', type=int, dest='port', help='Provide port for host address for specified service. If not specified, will be automatically set')
     parser.add_argument('-d', '--delay', type=int, dest='delay', help='Provide the number of seconds the program delays as each password is tried')
-
+    parser.add_argument('-p', '--proxy', type=str, dest='proxy', help='Use HTTP/HTTPs to hide IP address during Web Brute-force')
+    
     args = parser.parse_args()
 
     man_options = ['username', 'password']
@@ -40,10 +41,11 @@ def get_args():
     address = args.address
     port = args.port
     delay = args.delay
-
+    proxy = args.proxy
     if delay is None:
         delay = 1
-
+    if proxy is None:
+        proxy = False
 
     return service, username, wordlist, address, port, delay
 
@@ -176,7 +178,7 @@ def main():
         sleep(1)
         print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
-        facebookBruteforce(username, wordlist, delay)
+        facebookBruteforce(username, wordlist, delay, proxy)
 
     # Skype Bruteforce
     elif service == 'skype':
