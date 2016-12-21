@@ -1,7 +1,7 @@
 # brut3k1t
 Server-side brute-force module.
 
-# NOTE: brut3k1t is under heavy development! Expect updates to be pushed in the following weeks.
+# NOTE: FACEBOOK BRUTEFORCE IS FINALLY COMPLETE! YAY!!! TIME FOR TESTING!
 
 ## 1. Introduction
 

