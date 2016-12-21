@@ -13,7 +13,7 @@ The current protocols that are complete and in support are:
     smtp
     XMPP
     instagram
-    facebook (experimental)
+    facebook
     skype
 
 There will be future integration of Twitter, Skype, telnet, etc.
