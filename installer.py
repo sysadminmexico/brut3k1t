@@ -37,7 +37,7 @@ def kali_build():
     os.system("sudo apt-get update")
     print O + "Installing essential packages..." + W
     sleep(1.5)
-    os.system("sudo apt-get install build-essential libssl-dev libffi-dev python-dev")
+    os.system("sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-setuptools")
     os.system("sudo apt-get install python-selenium")
     os.system("sudo apt-get install firefoxdriver")
     print O + "Installing pip modules" + W

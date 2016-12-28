@@ -13,7 +13,7 @@ mainLib.py - Core methods and global variables that occur after user parsing and
 
 # Comes with Python. These should be core libraries.
 
-import socket, os, pip
+import socket, os
 from time import sleep
 from sys import *
 from random import *
@@ -37,8 +37,6 @@ B = '\033[34m'  # blue
 P = '\033[35m'  # purple
 C = '\033[36m'  # cyan
 GR = '\033[37m'  # gray
-
-
 
 
 ################################################################
