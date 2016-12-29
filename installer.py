@@ -48,6 +48,18 @@ def kali_build():
     #os.system("mkdir /opt/brut3k1t")
     #os.system("cp -R src/ /opt/brut3k1t && cp brut3k1t.py  /opt/brut3k1t && cp run.sh /opt/brut3k1t && cp run.sh /usr/bin/brut3k1t && chmod +x /usr/bin/brut3k1t")
 
+def ubuntu_build():
+    print O + "Updating Repositories..." + W
+    sleep(1.5)
+    os.system("sudo add-apt-repository universe")
+    os.system("sudo apt-get update")
+    print O + "Installing essential packages..." + W
+    sleep(1.5)
+    os.system("sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-setuptools")
+    os.system("sudo apt-get install python-pip") # result of universe repo
+    print O + "Installing pip modules" + W
+    sleep(1.5)
+    os.system("sudo pip install -r requirements.txt")
 
 
 # OS X / Darwin
@@ -71,15 +83,31 @@ print installer_head
 while True:
     print "Select an Operating System"
     print "=============================="
-    print "(1) Kali Linux / Parrot OS"
-    print "(2) Mac OS X / Darwin"
+    print "(1) Kali Linux x32/x64"
+    print "(2) Ubuntu / Parrot OS x32"
+    print "(3) Ubuntu / Parrot OS x64"
+    print "(4) Mac OS X / Darwin"
     print "=============================="
-    getos = raw_input()
+    print ""
+    getos = raw_input(">> ")
     if getos == "1":
         kali_build()
         break
     elif getos == "2":
-        osx_build()
+        ubuntu_build()
+        print O + "Getting GeckoDriver" + W
+        sleep(1.5)
+        os.system("cd deps && sudo tar -xvf geckodriver-v0.11.1-linux32.tar.gz && sudo mv geckodriver /usr/bin ")
+        print G + "Done installing dependences!" + O
         break
+    elif getos == "3":
+        ubuntu_build()
+        print O + "Getting GeckoDriver" + W
+        sleep(1.5)
+        os.system("cd deps && sudo tar -xvf geckodriver-v0.11.1-linux64.tar.gz && sudo mv geckodriver /usr/bin ")
+        print G + "Done installing dependences!" + O
+        break
+    elif getos == "4":
+        osx_build()
     else:
         continue
