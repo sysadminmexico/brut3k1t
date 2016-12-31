@@ -5,7 +5,7 @@ Server-side brute-force module.
 > wanted to become the best hacker in the world and I enjoyed beating the
 > security mechanisms.
 
-- Kevin Mitnick
+Kevin Mitnick
 
 
 ## 1. Introduction
@@ -56,13 +56,17 @@ Before you actually send an issue through Github, please look through here befor
 
 If you received any errors about dependencies, specifically `ImportError:` try to manually install the requirements. Here's how:
 
-1. Installing dependencies:
+---
+
+Installing dependencies:
 
     sudo apt-get install build-essential libssl-dev libffi-dev python-dev
 
 Make sure `firefox` is installed (default for most OS). If your operating system permits, install `firefoxdriver` as well.
 
-2. Installing `pip` modules
+---
+
+Installing `pip` modules
 
 If you are using Ubuntu and derivatives, make sure to enable the `universe` repo!
 
@@ -73,7 +77,9 @@ Install pip, and all the dependencies in `requirements.txt`.
     sudo apt-get install python-pip
     sudo pip install -r requirements.txt
 
-3. If you are getting an error such as `Can't load the profile. Profile Dir: /some/path`, or `'geckodriver' executable needs to be in PATH. `, that means that `selenium` can't find the path to Firefox. You are most likely on a non-Kali Linux operating system, and you chos and here's to fix:
+---
+
+If you are getting an error such as `Can't load the profile. Profile Dir: /some/path`, or `'geckodriver' executable needs to be in PATH. `, that means that `selenium` can't find the path to Firefox. You are most likely on a non-Kali Linux operating system, and you chos and here's to fix:
 
 First, `sudo apt-get remove python-selenium`.
 
@@ -81,6 +87,7 @@ First, `sudo apt-get remove python-selenium`.
 
 This sort of issue occurs mostly in non-Kali Linux distributions, even in other Debian-based distros.
 
+---
 
 ## 4. Usage
 
