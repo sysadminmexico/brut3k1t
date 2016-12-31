@@ -1,7 +1,12 @@
 # brut3k1t
 Server-side brute-force module.
 
-# NOTE: FACEBOOK BRUTEFORCE IS FINALLY COMPLETE! YAY!!! TIME FOR TESTING!
+> ...my case was all about the misappropriation of source code because I
+> wanted to become the best hacker in the world and I enjoyed beating the
+> security mechanisms.
+
+- Kevin Mitnick
+
 
 ## 1. Introduction
 
@@ -15,7 +20,7 @@ The current protocols that are complete and in support are:
     instagram
     facebook
     twitter
-    skype
+    skype (WIP)
 
 
 
@@ -45,9 +50,11 @@ Run the Installer file (as root)
 
     sudo python installer.py
 
-## 3. Troubleshooting (troubleshooting guide coming soon!)
+## 3. Troubleshooting
 
-If you received any errors about dependencies, try to manually install the requirements. Here's how:
+Before you actually send an issue through Github, please look through here before even trying to ask for help.
+
+If you received any errors about dependencies, specifically `ImportError:` try to manually install the requirements. Here's how:
 
 1. Installing dependencies:
 
@@ -57,11 +64,22 @@ Make sure `firefox` is installed (default for most OS). If your operating system
 
 2. Installing `pip` modules
 
+If you are using Ubuntu and derivatives, make sure to enable the `universe` repo!
+
+    sudo add-apt-repository universe
+
+Install pip, and all the dependencies in `requirements.txt`.
+
+    sudo apt-get install python-pip
     sudo pip install -r requirements.txt
 
-while you are in the `brut3k1t/` directory.
+3. If you are getting an error such as `Can't load the profile. Profile Dir: /some/path`, or `'geckodriver' executable needs to be in PATH. `, that means that `selenium` can't find the path to Firefox. You are most likely on a non-Kali Linux operating system, and you chos and here's to fix:
 
-If you are having any trouble installing `pip` dependencies, you can try using `easy_install` as an alternative
+First, `sudo apt-get remove python-selenium`.
+
+* Run the `installer.py`, this time choosing __Ubuntu / Parrot OS i386__ or __Ubuntu / Parrot OS amd64__ depending on your architecture. Running this will ensure that `geckodriver` will be installed into your `PATH`.
+
+This sort of issue occurs mostly in non-Kali Linux distributions, even in other Debian-based distros.
 
 
 ## 4. Usage
