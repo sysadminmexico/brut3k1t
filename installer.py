@@ -43,10 +43,8 @@ def kali_build():
     print O + "Installing pip modules" + W
     sleep(1.5)
     os.system("sudo pip install -r requirements.txt")
-    print G + "Done installing dependences!" + O
-    #print "Making symlinks and installation directories..." + W
-    #os.system("mkdir /opt/brut3k1t")
-    #os.system("cp -R src/ /opt/brut3k1t && cp brut3k1t.py  /opt/brut3k1t && cp run.sh /opt/brut3k1t && cp run.sh /usr/bin/brut3k1t && chmod +x /usr/bin/brut3k1t")
+    print G + "Done installing dependences!" + W
+    sys.exit(0)
 
 def ubuntu_build():
     print O + "Updating Repositories..." + W
@@ -75,19 +73,19 @@ def osx_build():
     # If Crytography returns errorS
     os.system("brew install libffi")
     os.system("sudo pip install -r requirements.txt")
-    print G + "[!] Done installing dependences! [!]" + O
+    print O + "Getting GeckoDriver" + W
+    os.system("cd deps && sudo tar -xvf geckodriver-v0.11.1-linux32.tar.gz && sudo mv -R geckodriver $HOME")
+    print G + "[!] Done installing dependences! [!]" + W
+    sys.exit(0)
 
 
 print installer_head
 
 while True:
-    print "Select an Operating System"
-    print "=============================="
+    print ""
     print "(1) Kali Linux x32/x64"
-    print "(2) Ubuntu / Parrot OS i386"
-    print "(3) Ubuntu / Parrot OS amd64"
-    print "(4) Mac OS X / Darwin"
-    print "=============================="
+    print "(2) Ubuntu / Parrot OS"
+    print "(3) Mac OS X / Darwin"
     print ""
     getos = raw_input(">> ")
     if getos == "1":
@@ -98,16 +96,11 @@ while True:
         print O + "Getting GeckoDriver" + W
         sleep(1.5)
         os.system("cd deps && sudo tar -xvf geckodriver-v0.11.1-linux32.tar.gz && sudo mv geckodriver /usr/bin ")
-        print G + "Done installing dependences!" + O
+        print G + "Done installing dependences!" + W
         break
     elif getos == "3":
-        ubuntu_build()
-        print O + "Getting GeckoDriver" + W
-        sleep(1.5)
-        os.system("cd deps && sudo tar -xvf geckodriver-v0.11.1-linux64.tar.gz && sudo mv geckodriver /usr/bin ")
-        print G + "Done installing dependences!" + O
-        break
-    elif getos == "4":
         osx_build()
+    #elif getos == "4":
+    #    osx_build()
     else:
         continue
