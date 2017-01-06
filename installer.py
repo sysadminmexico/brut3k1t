@@ -58,6 +58,7 @@ def ubuntu_build():
     print O + "Installing pip modules" + W
     sleep(1.5)
     os.system("sudo pip install -r requirements.txt")
+    os.system("pip install -U selenium")
 
 
 # OS X / Darwin
