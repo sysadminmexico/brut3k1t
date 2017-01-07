@@ -1,5 +1,3 @@
-/*replace this file with actual passwords for dictionary attack*/
-/*here is some common passwords*/
 123456
 password
 12345678

