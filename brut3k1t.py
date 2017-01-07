@@ -25,8 +25,8 @@ def get_args():
     parser.add_argument('-a', '--address', dest='address', help='Provide host address for specified service. Required for certain protocols')
     parser.add_argument('-p', '--port', type=int, dest='port', help='Provide port for host address for specified service. If not specified, will be automatically set')
     parser.add_argument('-d', '--delay', type=int, dest='delay', help='Provide the number of seconds the program delays as each password is tried')
-    parser.add_argument('-c', '--proxy', type=str, dest='proxy', help='Use HTTP/HTTPs to hide IP address during Web Brute-force')
-    
+    parser.add_argument('--proxy', dest='proxy', help="Providing a proxy for anonymization and avoiding time-outs")
+
     args = parser.parse_args()
 
     man_options = ['username', 'password']
@@ -42,12 +42,12 @@ def get_args():
     port = args.port
     delay = args.delay
     proxy = args.proxy
+
     if delay is None:
         delay = 1
-    if proxy is None:
-        proxy = False
 
-    return service, username, wordlist, address, port, delay
+
+    return service, username, wordlist, address, port, delay, proxy
 
 ####################
 # Main function. Append user args for visually appealing output
@@ -55,7 +55,7 @@ def get_args():
 
 def main():
 
-    service, username, wordlist, address, port, delay = get_args()
+    service, username, wordlist, address, port, delay, proxy = get_args()
 
     print headers[randint(0,13)]
 
@@ -66,7 +66,13 @@ def main():
     if os.path.exists(wordlist) == False:
         print R + "[!] Wordlist not found! [!]" + W
         exit()
-    print (C + "[*] Service: %s "  % service) + W
+    print (C + "[*] Service: %s "  % service)
+    if proxy is not None:
+        print (C + "[*] Proxy file: %s " % proxy) + W
+        print O + "Checking if proxies are active..." + W
+        print ""
+        proxyServer(proxy)
+        print ""
     sleep(0.5)
 
     # SSH bruteforce
@@ -178,7 +184,7 @@ def main():
         sleep(1)
         print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
-        facebookBruteforce(username, wordlist, delay, proxy)
+        facebookBruteforce(username, wordlist, delay)
 
     # Skype Bruteforce
     elif service == 'skype':

