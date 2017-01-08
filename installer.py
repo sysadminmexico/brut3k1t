@@ -58,7 +58,7 @@ def ubuntu_build():
     print O + "Installing pip modules" + W
     sleep(1.5)
     os.system("sudo pip install -r requirements.txt")
-    os.system("pip install -U selenium")
+    os.system("sudo pip install -U selenium")
 
 
 # OS X / Darwin
@@ -96,7 +96,7 @@ while True:
         ubuntu_build()
         print O + "Getting GeckoDriver" + W
         sleep(1.5)
-        os.system("cd deps && sudo tar -xvf geckodriver-v0.11.1-linux32.tar.gz && sudo mv geckodriver /usr/bin ")
+        os.system("cd deps && sudo tar -xvf geckodriver-v0.13.0-linux32.tar.gz && sudo mv geckodriver /usr/bin ")
         print G + "Done installing dependences!" + W
         break
     elif getos == "3":
