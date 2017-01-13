@@ -8,6 +8,14 @@ Server-side brute-force module.
 Kevin Mitnick
 
 
+## 0. Credit
+
+Credit goes out to those who have helped with the overall design and implementation of this project.
+The original design that inspired me to write a full-out bruteforce project was @chinoogawa, with the
+original __instaBrute__ design. Thanks!
+
+Credit also to @R3C0Nx00. Smart kid with brilliant penetration testing knowledge.
+
 ## 1. Introduction
 
 __brut3k1t__ is a server-side bruteforce module that supports dictionary attacks for several protocols.
