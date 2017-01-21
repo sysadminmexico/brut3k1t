@@ -1,11 +1,9 @@
-# brut3k1t
+# brut3k1t  
+
+[![Build Status](https://travis-ci.org/ex0dus-0x/brut3k1t.svg?branch=master)](https://travis-ci.org/ex0dus-0x/brut3k1t)
+
 Server-side brute-force module.
 
-> ...my case was all about the misappropriation of source code because I
-> wanted to become the best hacker in the world and I enjoyed beating the
-> security mechanisms.
-
-Kevin Mitnick
 
 
 ## 0. Credit

