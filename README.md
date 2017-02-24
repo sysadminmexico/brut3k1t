@@ -1,11 +1,8 @@
 # brut3k1t  
 
 [![Build Status](https://travis-ci.org/ex0dus-0x/brut3k1t.svg?branch=master)](https://travis-ci.org/ex0dus-0x/brut3k1t)
-
 [![GitHub forks](https://img.shields.io/github/forks/ex0dus-0x/brut3k1t.svg)](https://github.com/ex0dus-0x/brut3k1t/network)
-
 [![GitHub issues](https://img.shields.io/github/issues/ex0dus-0x/brut3k1t.svg)](https://github.com/ex0dus-0x/brut3k1t/issues)
-
 [![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/ex0dus-0x/brut3k1t/master/LICENSE)
 
 Server-side brute-force module.
@@ -25,14 +22,20 @@ Credit also to @R3C0Nx00. Smart kid with brilliant penetration testing knowledge
 __brut3k1t__ is a server-side bruteforce module that supports dictionary attacks for several protocols.
 The current protocols that are complete and in support are:
 
+    ----------------
+    Protocols:
+    ----------------
     ssh
     ftp
     smtp
     XMPP
+
+    ----------------
+    Webbased Services
+    ----------------
     instagram
     facebook
     twitter
-    skype (WIP)
 
 
 
