@@ -1,19 +1,17 @@
 # brut3k1t  
 
-[![Build Status](https://travis-ci.org/ex0dus-0x/brut3k1t.svg?branch=master)](https://travis-ci.org/ex0dus-0x/brut3k1t)
 [![GitHub forks](https://img.shields.io/github/forks/ex0dus-0x/brut3k1t.svg)](https://github.com/ex0dus-0x/brut3k1t/network)
 [![GitHub issues](https://img.shields.io/github/issues/ex0dus-0x/brut3k1t.svg)](https://github.com/ex0dus-0x/brut3k1t/issues)
 [![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/ex0dus-0x/brut3k1t/master/LICENSE)
 
 Server-side brute-force module.
 
-
+Sorry for not working on this project. I have been quite busy with school as well as other projects that have taken precedence. With that said, any new features you would like to see added can be submitted through an issue/pull request. I am working on updating the current web-based bruteforce, as well as adding protocols such as `rdp` for remote desktop, and etc.
 
 ## 0. Credit
 
 Credit goes out to those who have helped with the overall design and implementation of this project.
-The original design that inspired me to write a full-out bruteforce project was @chinoogawa, with the
-original __instaBrute__ design. Thanks!
+The original design that inspired me to write a full-out bruteforce project was @chinoogawa, with the original __instaBrute__ design. Thanks!
 
 Credit also to @R3C0Nx00. Smart kid with brilliant penetration testing knowledge.
 
@@ -41,7 +39,7 @@ The current protocols that are complete and in support are:
 
 ## 2. Installation
 
-Installation is simple. __brut3k1t__ requires several dependencies, which will all be installed by running the `installer.py` executable.
+Installation is simple. __brut3k1t__ requires several dependencies, which will all be installed by running the `installer.py` executable in the `extras` folder.
 
 * __argparse__ - utilized for parsing command line arguments
 * __paramiko__ - utilized for working with SSH connections and authentication
@@ -63,7 +61,7 @@ Change to directory:
 
 Run the Installer file (as root)
 
-    sudo python installer.py
+    sudo python extras/installer.py
 
 ## 3. Troubleshooting
 
