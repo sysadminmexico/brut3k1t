@@ -47,9 +47,6 @@ def osx_build():
     print G + "[!] Done installing dependences! [!]" + W
     sys.exit(0)
 
-
-print installer_head
-
 while True:
     print ""
     print "(1) Kali Linux x32/x64"
