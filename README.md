@@ -4,7 +4,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/ex0dus-0x/brut3k1t.svg)](https://github.com/ex0dus-0x/brut3k1t/issues)
 [![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/ex0dus-0x/brut3k1t/master/LICENSE)
 
-Server-side brute-force module.
+Brute-force framework.
 
 Sorry for not working on this project. I have been quite busy with school as well as other projects that have taken precedence. With that said, any new features you would like to see added can be submitted through an issue/pull request. I am working on updating the current web-based bruteforce, as well as adding protocols such as `rdp` for remote desktop, and etc.
 
@@ -17,7 +17,7 @@ Credit also to @R3C0Nx00. Smart kid with brilliant penetration testing knowledge
 
 ## 1. Introduction
 
-__brut3k1t__ is a server-side bruteforce module that supports dictionary attacks for several protocols.
+__brut3k1t__ is a server-side bruteforce framework that supports dictionary attacks for several protocols.
 The current protocols that are complete and in support are:
 
     ----------------
@@ -26,7 +26,8 @@ The current protocols that are complete and in support are:
     ssh
     ftp
     smtp
-    XMPP
+    xmpp
+    telnet
 
     ----------------
     Webbased Services
@@ -45,10 +46,8 @@ Installation is simple. __brut3k1t__ requires several dependencies, which will a
 * __paramiko__ - utilized for working with SSH connections and authentication
 * __ftplib__ - utilized for working with FTP connections and authentication
 * __smtplib__ - utilized for working with SMTP (email) connections and authentication
-* ~~ __fbchat__ - utilized for connecting with Facebook ~~
 * __selenium__ - utilized for web scraping, which is used with Instagram (and later Twitter)
 * __xmppy__ - utiized for XMPP connections
-* __SkPy__ - utilized for Skype connections
 
 
 Downloading is simple. Simply `git clone`.
@@ -61,7 +60,7 @@ Change to directory:
 
 Run the Installer file (as root)
 
-    sudo python extras/installer.py
+    ./installer
 
 ## 3. Troubleshooting
 
@@ -106,9 +105,9 @@ This sort of issue occurs mostly in non-Kali Linux distributions, even in other 
 
 Utilizing __brut3k1t__ is a little more complicated than just running a Python file.
 
-Typing `python brut3k1t -h` shows the help menu:
+Typing `./brut3k1t -h` shows the help menu:
 
-    usage: brut3k1t.py [-h] [-s SERVICE] [-u USERNAME] [-w PASSWORD] [-a ADDRESS]
+    usage: brut3k1t [-h] [-s SERVICE] [-u USERNAME] [-w PASSWORD] [-a ADDRESS]
                    [-p PORT] [-d DELAY]
 
     Server-side bruteforce module written in Python
@@ -138,29 +137,29 @@ Typing `python brut3k1t -h` shows the help menu:
 
 Cracking SSH server running on `192.168.1.3` using `root` and `wordlist.txt` as a wordlist.
 
-    python brut3k1t.py -s ssh -a 192.168.1.3 -u root -w wordlist.txt
+    ./brut3k1t -s ssh -a 192.168.1.3 -u root -w wordlist.txt
 
 The program will automatically set the port to 22, but if it is different, specify with `-p` flag.
 
 Cracking email `test@gmail.com` with `wordlist.txt` on port `25` with a 3 second delay. For email it is necessary to use the SMTP server's address. For e.g Gmail = `smtp.gmail.com`. You can research this using Google.
 
-    python brut3k1t.py -s smtp -a smtp.gmail.com -u test@gmail.com -w wordlist.txt -p 25 -d 3
+    ./brut3k1t -s smtp -a smtp.gmail.com -u test@gmail.com -w wordlist.txt -p 25 -d 3
 
 Cracking XMPP `test@creep.im` with `wordlist.txt` on default port `5222`. XMPP also is similar to SMTP, whereas you will need to provide the address of the XMPP server, in this case `creep.im`.
 
-    python brut3k1t.py -s xmpp -a creep.im -u test -w wordlist.txt
+    ./brut3k1t -s xmpp -a creep.im -u test -w wordlist.txt
 
 Cracking Facebook requires either the username (preferable, in this case, `test`), email, phone number, or even ID.
 
-    python brut3k1t.py -s facebook -u test -w wordlist.txt
+    ./brut3k1t -s facebook -u test -w wordlist.txt
 
 Cracking Instagram with username `test` with wordlist `wordlist.txt` and a 5 second delay
 
-     python brut3k1t.py -s instagram -u test -w wordlist.txt -d 5
+     ./brut3k1t -s instagram -u test -w wordlist.txt -d 5
 
- Cracking Twitter with username `test` with wordlist `wordlist.txt`
+Cracking Twitter with username `test` with wordlist `wordlist.txt`
 
-     python brut3k1t.py -s twitter -u test -w wordlist.txt
+     ./brut3k1t -s twitter -u test -w wordlist.txt
 
 
 ## 6. KEY NOTES TO REMEMBER
@@ -185,7 +184,6 @@ Thanks for trying out brut3k1t! I've been pretty lazy in terms of development an
 * Randomized user agents
 * GUI or web-based GUI
 * Telnet and HTTP attack vectors
-* Using Skype login + selenium rather than `Skpy` module.
 
 
 # Much more features to come!
