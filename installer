@@ -76,9 +76,7 @@ while True:
         os.system("cd dependences && sudo tar -xvf geckodriver-v0.13.0-linux32.tar.gz && sudo mv geckodriver /usr/bin ")
         print G + "Done installing dependences!" + W
         break
-    elif getos == "3":D 
+    elif getos == "3":
         osx_build()
-    #elif getos == "4":
-    #    osx_build()
     else:
         continue
