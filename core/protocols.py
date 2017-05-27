@@ -163,6 +163,7 @@ class ProtocolBruteforce(object):
                 telnet.write(password + "\n")
             except socket.error:
                 print R + "[!] Error: Connection Failed. [!]" + W
+            # TODO: write output and handle error
             except KeyboardInterrupt:
                 telnet.close()
                 exit(1)

@@ -1,7 +1,3 @@
-''' Thanks http://www.ascii-code.com,
-           http://www.asciiworld.com,
-           http://patorjk.com for the ASCII art!! '''
-
 from random import *
 
 header = """
@@ -14,6 +10,6 @@ header = """
     Written by: @ex0dus-0x
  """
 
-# Working on making new headers.
+# TODO: Build new headers
 
 headers = [header]

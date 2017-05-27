@@ -1,6 +1,11 @@
 #!/usr/bin/python
+'''
+brut3k1t - main application that calls upon dependencies and 
+    other libraries / modules
+'''
 
 from src.brut3k1t import *
+
 
 def main():
     os.system("rm -rf tmp/") # delete tmp if created from previous usage

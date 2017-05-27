@@ -71,11 +71,11 @@ class Bruteforce(object):
         for i in proxy.readlines():
             proxyaddr = i.strip("\n")
             try:
-                proxies = {"http" : "http://"+str(proxyaddr)}
+                proxies = {"http" : "http://" + str(proxyaddr) }
                 r = requests.get("http://google.com", proxies=proxies)
                 print G + "[v]" + W + (" Proxy %s is found! " % proxyaddr)
             except requests.exceptions.ProxyError:
                 print R + "[X]" + W + (" Proxy %s is NOT found!" % proxyaddr)
-
+                
             proxy.close()
     
