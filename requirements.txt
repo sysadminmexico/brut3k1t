@@ -1,5 +1,4 @@
 mechanize==0.2.5
 paramiko==2.0.2
 requests==2.10.0
-selenium==2.53.2
 xmpppy==0.5.0rc1

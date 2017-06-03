@@ -6,7 +6,8 @@
 
 Brute-force framework.
 
-Sorry for not working on this project. I have been quite busy with school as well as other projects that have taken precedence. With that said, any new features you would like to see added can be submitted through an issue/pull request. I am working on updating the current web-based bruteforce, as well as adding protocols such as `rdp` for remote desktop, and etc.
+
+__Update:__ it seems that some people are having issues with selenium on certain services. It has been fixed.
 
 ## 0. Credit
 

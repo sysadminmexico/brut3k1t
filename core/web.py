@@ -44,8 +44,8 @@ class WebBruteforce(object):
         self.webBruteforce(username, wordlist, service, delay)
 
     def usercheck(self, username, service):
+        driver = webdriver.Firefox()
         try:
-            driver = webdriver.Firefox()
             if service == "facebook":
                 driver.get("https://www.facebook.com/" + username)
                 assert (("Sorry, this page isn't available.") not in driver.page_source)
