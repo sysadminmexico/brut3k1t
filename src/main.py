@@ -22,5 +22,5 @@ P = '\033[35m'  # purple
 C = '\033[36m'  # cyan
 GR = '\033[37m'  # gray
 
-TIMEOUT = "There was a problem logging you in. Please try again soon."
+TIMEOUT = "Please wait a few minutes before you try again."
 

