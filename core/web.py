@@ -65,7 +65,7 @@ class WebBruteforce(object):
     def webBruteforce(self, username, wordlist, service, delay):
         driver = webdriver.Firefox()
         if service == "facebook":
-            driver.get("https://iphone.facebook.com/")
+            driver.get("https://touch.facebook.com/login?soft=auth/")
         elif service == "twitter":
             driver.get("https://mobile.twitter.com/session/new")
             sleep(delay * 2)
