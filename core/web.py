@@ -103,7 +103,7 @@ class WebBruteforce(object):
                 
                 # Check for changes in driver.title 
                 if service == "facebook":
-                    assert (("Facebook - Log In or Sign Up") in driver.title)
+                    assert (("Log into Facebook | Facebook") in driver.title)
                 elif service == "twitter":
                     assert (("Twitter") in driver.title)
                 elif service == "instagram":
