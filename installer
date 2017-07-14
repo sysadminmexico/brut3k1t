@@ -73,7 +73,7 @@ while True:
         ubuntu_build()
         print O + "Getting GeckoDriver" + W
         sleep(1.5)
-        os.system("cd dependences && sudo tar -xvf geckodriver-v0.13.0-linux32.tar.gz && sudo mv geckodriver /usr/bin ")
+        os.system("cd dependencies && sudo tar -xvf geckodriver-v0.13.0-linux32.tar.gz && sudo mv geckodriver /usr/bin ")
         print G + "Done installing dependences!" + W
         break
     elif getos == "3":
