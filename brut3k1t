@@ -12,7 +12,9 @@ def main():
     
     parser = argparse.ArgumentParser(description='Bruteforce framework written in Python')
     required = parser.add_argument_group('required arguments')
-    required.add_argument('-s', '--service', dest='service', help="Provide a service being attacked. Several protocols and services are supported")
+    required.add_argument('-s', '--service', dest='service', help="Provide a service being attacked.\
+                          The Protocols and Services supported are SSH, FTP, SMTP, XMPP, TELNET, INSTAGRAM, FACEBOOK, TWITTER",\
+                          metavar='',choices=['ssh', 'ftp', 'smtp', 'xmpp', 'telnet', 'instagram', 'facebook', 'twitter'])
     required.add_argument('-u', '--username', dest='username', help='Provide a valid username for service/protocol being executed')
     required.add_argument('-w', '--wordlist', dest='password', help='Provide a wordlist or directory to a wordlist')
     parser.add_argument('-a', '--address', dest='address', help='Provide host address for specified service. Required for certain protocols')
