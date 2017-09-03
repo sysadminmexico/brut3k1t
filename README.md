@@ -14,7 +14,6 @@ __Update:__ it seems that some people are having issues with selenium on certain
 Credit goes out to those who have helped with the overall design and implementation of this project.
 The original design that inspired me to write a full-out bruteforce project was @chinoogawa, with the original __instaBrute__ design. Thanks!
 
-Credit also to @R3C0Nx00. Smart kid with brilliant penetration testing knowledge.
 
 ## 1. Introduction
 
