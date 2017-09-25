@@ -6,9 +6,6 @@
 
 Brute-force framework.
 
-
-__Update:__ it seems that some people are having issues with selenium on certain services. It has been fixed.
-
 ## 0. Credit
 
 Credit goes out to those who have helped with the overall design and implementation of this project.
@@ -40,27 +37,17 @@ The current protocols that are complete and in support are:
 
 ## 2. Installation
 
-Installation is simple. __brut3k1t__ requires several dependencies, which will all be installed by running the `installer.py` executable in the `extras` folder.
-
-* __argparse__ - utilized for parsing command line arguments
-* __paramiko__ - utilized for working with SSH connections and authentication
-* __ftplib__ - utilized for working with FTP connections and authentication
-* __smtplib__ - utilized for working with SMTP (email) connections and authentication
-* __selenium__ - utilized for web scraping, which is used with Instagram (and later Twitter)
-* __xmppy__ - utiized for XMPP connections
-
-
 Downloading is simple. Simply `git clone`.
 
-    git clone https://github.com/ex0dus-0x/brut3k1t
+    $ git clone https://github.com/ex0dus-0x/brut3k1t
 
 Change to directory:
 
-    cd /path/to/brut3k1t
+    $ cd /path/to/brut3k1t
 
 Run the Installer file (as root)
 
-    ./installer
+    $ ./installer
 
 ## 3. Troubleshooting
 
@@ -70,32 +57,38 @@ If you received any errors about dependencies, specifically `ImportError:` try t
 
 ---
 
+### a. Dependency Issues
+
 Installing dependencies:
 
     sudo apt-get install build-essential libssl-dev libffi-dev python-dev
 
 Make sure `firefox` is installed (default for most OS). If your operating system permits, install `firefoxdriver` as well.
 
----
+Some people may see problems pertaining to `firefox` when utilizing `selenium`. Here is my (working) Firefox version:
+
+    Mozilla Firefox 52.2.0
 
 Installing `pip` modules
 
 If you are using Ubuntu and derivatives, make sure to enable the `universe` repo!
 
-    sudo add-apt-repository universe
+    $ sudo add-apt-repository universe
 
 Install pip, and all the dependencies in `requirements.txt`.
 
-    sudo apt-get install python-pip
-    sudo pip install -r requirements.txt
+    $ sudo apt-get install python-pip
+    $ sudo pip install -r requirements.txt
 
----
+### a. Firefox/Geckodriver Issues
 
-If you are getting an error such as `Can't load the profile. Profile Dir: /some/path`, or `'geckodriver' executable needs to be in PATH. `, that means that `selenium` can't find the path to Firefox. You are most likely on a non-Kali Linux operating system, and you chos and here's to fix:
+If you are getting an error such as `Can't load the profile. Profile Dir: /some/path`, or `'geckodriver' executable needs to be in PATH. `, that means that `selenium` can't find the path to `geckodriver`.
 
 First, `sudo apt-get remove python-selenium`.
 
-* Run the `installer.py`, this time choosing __Ubuntu / Parrot OS i386__ or __Ubuntu / Parrot OS amd64__ depending on your architecture. Running this will ensure that `geckodriver` will be installed into your `PATH`.
+* Run the `installer`, this time choosing __Ubuntu / Parrot OS i386__ or __Ubuntu / Parrot OS amd64__ depending on your architecture. Running this will ensure that `geckodriver` will be installed into your `PATH`.
+
+If you wish to do it manually, download the geckodriver [here](https://github.com/mozilla/geckodriver/releases/), and place the executable in your path (preferably `/usr/bin`).
 
 This sort of issue occurs mostly in non-Kali Linux distributions, even in other Debian-based distros.
 

