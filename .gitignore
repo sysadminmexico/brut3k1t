@@ -2,3 +2,4 @@
 venv
 modules
 tests
+env/

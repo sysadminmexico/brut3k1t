@@ -1,14 +1,21 @@
  # -*- coding: utf-8 -*-
-import socket, os, requests
+import socket
+import os
+import requests
+import sys
 from time import sleep
 from random import *
-from subprocess import call
 
-import smtplib, argparse, paramiko, mechanize, telnetlib, ftplib
-from xmpp import *
+import smtplib
+import argparse
+import paramiko
+import mechanize
+import telnetlib
+import ftplib
+import hashlib
+from xmpp import Client
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import sys
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -33,17 +40,3 @@ header = """
  |_.__/|_|   \__,_|\__|____/|_|\_\_|\__|
     Written by: @ex0dus-0x
  """
-
-
-def proxyServer(self, proxy):
-    proxy = open(proxy, 'r')
-    for i in proxy.readlines():
-        proxyaddr = i.strip("\n")
-        try:
-            proxies = {"http" : "http://" + str(proxyaddr) }
-            r = requests.get("http://google.com", proxies=proxies)
-            print G + "[v]" + W + (" Proxy %s is found! " % proxyaddr)
-        except requests.exceptions.ProxyError:
-            print R + "[X]" + W + (" Proxy %s is NOT found!" % proxyaddr)
-            
-        proxy.close()

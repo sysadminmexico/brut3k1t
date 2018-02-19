@@ -14,7 +14,7 @@ The original design that inspired me to write a full-out bruteforce project was 
 
 ## 1. Introduction
 
-__brut3k1t__ is a server-side bruteforce framework that supports dictionary attacks for several protocols.
+__brut3k1t__ is a  bruteforce framework that supports dictionary attacks for several protocols and services
 The current protocols that are complete and in support are:
 
     ----------------
@@ -33,6 +33,12 @@ The current protocols that are complete and in support are:
     facebook
     twitter
 
+    ----------------
+    Hashcrack
+    ----------------
+    md5
+    sha1
+    sha224
 
 
 ## 2. Installation
@@ -61,7 +67,7 @@ If you received any errors about dependencies, specifically `ImportError:` try t
 
 Installing dependencies:
 
-    sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+    sudo apt install build-essential libssl-dev libffi-dev python-dev
 
 Make sure `firefox` is installed (default for most OS). If your operating system permits, install `firefoxdriver` as well.
 
@@ -100,33 +106,36 @@ Utilizing __brut3k1t__ is a little more complicated than just running a Python f
 
 Typing `./brut3k1t -h` shows the help menu:
 
-    usage: brut3k1t [-h] [-s SERVICE] [-u USERNAME] [-w PASSWORD] [-a ADDRESS]
-                   [-p PORT] [-d DELAY]
+    usage: brut3k1t [-h] [-s] [-u USERNAME] [-w WORDLIST] [-a ADDRESS] [-p PORT]
+                [-d DELAY]
 
-    Server-side bruteforce module written in Python
+    Bruteforce framework written in Python
 
     optional arguments:
-    -h, --help            show this help message and exit
-    -a ADDRESS, --address ADDRESS
-                        Provide host address for specified service. Required
-                        for certain protocols
-    -p PORT, --port PORT  Provide port for host address for specified service.
-                        If not specified, will be automatically set
-    -d DELAY, --delay DELAY
-                        Provide the number of seconds the program delays as
-                        each password is tried
+      -h, --help            show this help message and exit
+      -a ADDRESS, --address ADDRESS
+                          Provide host address for specified service. Required
+                          for certain protocols
+      -p PORT, --port PORT  Provide port for host address for specified service.
+                          If not specified, will be automatically set
+      -d DELAY, --delay DELAY
+                          Provide the number of seconds the program delays as
+                          each password is tried
 
     required arguments:
-    -s SERVICE, --service SERVICE
-                        Provide a service being attacked. Several protocols
-                        and services are supported
-    -u USERNAME, --username USERNAME
-                        Provide a valid username for service/protocol being
-                        executed
-    -w PASSWORD, --wordlist PASSWORD
-                        Provide a wordlist or directory to a wordlist
+      -s , --service        Provide a service being attacked. The Protocols and
+                          Services supported are SSH, FTP, SMTP, XMPP, TELNET,
+                          INSTAGRAM, FACEBOOK, TWITTER, MD5, SHA1, SHA224
+      -u USERNAME, --username USERNAME
+                          Provide a valid username/hashstring for
+                          service/protocol/hashcrack being executed
+      -w WORDLIST, --wordlist WORDLIST
+                          Provide a wordlist or directory to a wordlist
 
-### 5. Examples of usage:
+
+Note that with the new release of the hashcrack feature, the `--username` flag is used to supply the target hashstring for hash cracking!
+
+## 5. Examples of usage:
 
 Cracking SSH server running on `192.168.1.3` using `root` and `wordlist.txt` as a wordlist.
 
@@ -154,6 +163,10 @@ Cracking Twitter with username `test` with wordlist `wordlist.txt`
 
      ./brut3k1t -s twitter -u test -w wordlist.txt
 
+Cracking a MD5 hash (where username is the hashstring) with wordlist `wordlist.txt`
+
+    ./brut3k1t -s md5 -u 86bd1db79525abdd576165c1427f9bf6 -w wordlist.txt
+
 
 ## 6. KEY NOTES TO REMEMBER
 
@@ -171,12 +184,12 @@ Cracking Twitter with username `test` with wordlist `wordlist.txt`
 
 Thanks for trying out brut3k1t! I've been pretty lazy in terms of development and keeping this code updated and in track, so please __PLEASE__ report any sort of errors that arise (including false-positives).
 
-## 7. TODO
+## Contributing
 
-* Proxy support
-* Randomized user agents
-* GUI or web-based GUI
-* Telnet and HTTP attack vectors
+If you have any proposed changes, please make a pull request or issue!
 
+brut3k1t was designed as a pragmatic approach towards testing bruteforce attacks on various platforms. In no way does it endorse malicious hacking. Please do not support the use of this code as a method of advancing black-hat activites.
 
-# Much more features to come!
+## License
+
+[GPL-3.0](https://opensource.org/licenses/GPL-3.0)
