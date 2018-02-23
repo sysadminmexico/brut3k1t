@@ -3,3 +3,4 @@ venv
 modules
 tests
 env/
+*.log

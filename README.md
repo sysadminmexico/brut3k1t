@@ -61,6 +61,10 @@ Before you actually send an issue through Github, please look through here befor
 
 If you received any errors about dependencies, specifically `ImportError:` try to manually install the requirements. Here's how:
 
+     pip install -r requirements.txt
+
+Web-based services often change their authentication page front-end. If this is the case and new extraneous elements are introduced (such as unnecessary "loading bars"), use a higher delay. This way, the program is able to wait until they go away, and then inject the username/password.
+
 ---
 
 ### a. Dependency Issues

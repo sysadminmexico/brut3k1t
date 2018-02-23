@@ -16,6 +16,7 @@ import hashlib
 from xmpp import Client
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 
 reload(sys)
 sys.setdefaultencoding('utf8')
