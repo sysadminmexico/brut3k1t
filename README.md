@@ -1,20 +1,20 @@
-# brut3k1t  
+# brut3k1t
 
 [![GitHub forks](https://img.shields.io/github/forks/ex0dus-0x/brut3k1t.svg)](https://github.com/ex0dus-0x/brut3k1t/network)
 [![GitHub issues](https://img.shields.io/github/issues/ex0dus-0x/brut3k1t.svg)](https://github.com/ex0dus-0x/brut3k1t/issues)
 [![GitHub license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://raw.githubusercontent.com/ex0dus-0x/brut3k1t/master/LICENSE)
 
-Brute-force framework.
+brut3k1t is a security-oriented research framework for conducting bruteforce attacks against a multitude of protocols and services
 
 ## 0. Credit
 
-Credit goes out to those who have helped with the overall design and implementation of this project.
 The original design that inspired me to write a full-out bruteforce project was @chinoogawa, with the original __instaBrute__ design. Thanks!
 
 
 ## 1. Introduction
 
-__brut3k1t__ is a  bruteforce framework that supports dictionary attacks for several protocols and services
+
+__brut3k1t__ is a  bruteforce framework that supports dictionary attacks for several protocols and services.
 The current protocols that are complete and in support are:
 
     ----------------
@@ -40,69 +40,44 @@ The current protocols that are complete and in support are:
     sha1
     sha224
 
+The idea behind how brut3k1t works is __deceptively simple__.
+
+Libraries for connecting and authenticating to network protocols have existed as part of most programming languages' standard library, and brut3k1t abuses them in order to execute bruteforce attacks.
+
+As for web-based services and sites, by utilizing browser manipulation, brut3k1t relies on a bot to visit the webpage, hooking onto authentication input field elements, and sending the username / password.
+
 
 ## 2. Installation
 
-Downloading is simple. Simply `git clone`.
+Requirements:
 
-    $ git clone https://github.com/ex0dus-0x/brut3k1t
+* firefox (as your browser)
+* python (2.7.x)
+* pip2.7
+* wget
+* tar
 
-Change to directory:
+brut3k1t exists as a singular Python executable, with core libraries and other dependency code residing in `core` and `src`.
 
-    $ cd /path/to/brut3k1t
+    git clone https://github.com/ex0dus-0x/brut3k1t.git && cd brut3k1t
 
-Run the Installer file (as root)
+Use the installer to install the proper requirements. This should work on a majority of Linux distributions:
 
-    $ ./installer
+    ./installer
+
+And run!
+
+    ./brut3k1t -h
 
 ## 3. Troubleshooting
 
-Before you actually send an issue through Github, please look through here before even trying to ask for help.
+1. `Can't load the profile. Profile Dir: /some/path`, or `'geckodriver' executable needs to be in PATH. `
 
-If you received any errors about dependencies, specifically `ImportError:` try to manually install the requirements. Here's how:
+`geckodriver` is not in the `PATH`. Make sure that you have run the installer before-hand, and that there is a `geckodriver` in your `PATH` (e.g `/usr/bin`). If not, you may have to manually put it there by downloading the executable [here](https://github.com/mozilla/geckodriver/releases/), and placing it in your `PATH`.
 
-     pip install -r requirements.txt
+2. Twitter/Facebook/Instagram login page is not rendering / brut3k1t is not hooking onto page!
 
 Web-based services often change their authentication page front-end. If this is the case and new extraneous elements are introduced (such as unnecessary "loading bars"), use a higher delay. This way, the program is able to wait until they go away, and then inject the username/password.
-
----
-
-### a. Dependency Issues
-
-Installing dependencies:
-
-    sudo apt install build-essential libssl-dev libffi-dev python-dev
-
-Make sure `firefox` is installed (default for most OS). If your operating system permits, install `firefoxdriver` as well.
-
-Some people may see problems pertaining to `firefox` when utilizing `selenium`. Here is my (working) Firefox version:
-
-    Mozilla Firefox 52.2.0
-
-Installing `pip` modules
-
-If you are using Ubuntu and derivatives, make sure to enable the `universe` repo!
-
-    $ sudo add-apt-repository universe
-
-Install pip, and all the dependencies in `requirements.txt`.
-
-    $ sudo apt-get install python-pip
-    $ sudo pip install -r requirements.txt
-
-### a. Firefox/Geckodriver Issues
-
-If you are getting an error such as `Can't load the profile. Profile Dir: /some/path`, or `'geckodriver' executable needs to be in PATH. `, that means that `selenium` can't find the path to `geckodriver`.
-
-First, `sudo apt-get remove python-selenium`.
-
-* Run the `installer`, this time choosing __Ubuntu / Parrot OS i386__ or __Ubuntu / Parrot OS amd64__ depending on your architecture. Running this will ensure that `geckodriver` will be installed into your `PATH`.
-
-If you wish to do it manually, download the geckodriver [here](https://github.com/mozilla/geckodriver/releases/), and place the executable in your path (preferably `/usr/bin`).
-
-This sort of issue occurs mostly in non-Kali Linux distributions, even in other Debian-based distros.
-
----
 
 ## 4. Usage
 
@@ -178,7 +153,7 @@ Cracking a MD5 hash (where username is the hashstring) with wordlist `wordlist.t
 
  * If you do not supply the delay `-d` flag, the default delay in seconds will be 1.
 
- * Remember, use the SMTP server address and XMPP server address for the address `-a` flag, when cracking SMTP and XMPP, respectively.
+ * Remember, use the SMTP server address (i.e smtp.gmail.com) and XMPP server address for the address `-a` flag, when cracking SMTP and XMPP, respectively.
 
  * Make sure the wordlist and its directory is specified. If it is in `/usr/local/wordlists/wordlist.txt` specify that for the wordlist `-w` flag.
 

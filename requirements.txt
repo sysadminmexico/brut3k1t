@@ -1,4 +1,14 @@
+asn1crypto==0.24.0
+cffi==1.11.4
+cryptography==2.1.4
+enum34==1.1.6
+idna==2.6
+ipaddress==1.0.19
 mechanize==0.2.5
 paramiko==2.0.2
+pyasn1==0.4.2
+pycparser==2.18
 requests==2.10.0
+selenium==3.9.0
+six==1.11.0
 xmpppy==0.5.0rc1
